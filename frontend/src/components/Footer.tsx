@@ -4,40 +4,42 @@
  * Application footer with links and copyright.
  */
 
+import './Footer.css';
+
 interface FooterProps {
   year?: number;
 }
 
 const Footer: React.FC<FooterProps> = ({ year = new Date().getFullYear() }) => {
   return (
-    <footer className="bg-gray-800 text-gray-300 mt-auto">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-grid">
           {/* About */}
-          <div>
-            <h3 className="text-white font-semibold mb-3">Urdu OCR</h3>
-            <p className="text-sm">
+          <div className="footer-section">
+            <h3>Urdu OCR</h3>
+            <p>
               A deep learning-powered application for recognizing handwritten Urdu characters
               using Convolutional Neural Networks.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-3">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+          <div className="footer-section">
+            <h3>Quick Links</h3>
+            <ul className="footer-links">
               <li>
-                <a href="https://github.com" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
                   GitHub Repository
                 </a>
               </li>
               <li>
-                <a href="/docs" className="hover:text-white transition-colors">
+                <a href="/docs">
                   API Documentation
                 </a>
               </li>
               <li>
-                <a href="/about" className="hover:text-white transition-colors">
+                <a href="/about">
                   About the Project
                 </a>
               </li>
@@ -45,13 +47,13 @@ const Footer: React.FC<FooterProps> = ({ year = new Date().getFullYear() }) => {
           </div>
 
           {/* Technology */}
-          <div>
-            <h3 className="text-white font-semibold mb-3">Technology</h3>
-            <div className="flex flex-wrap gap-2">
+          <div className="footer-section">
+            <h3>Technology</h3>
+            <div className="footer-tech-tags">
               {['React', 'FastAPI', 'TensorFlow', 'TypeScript'].map((tech) => (
                 <span
                   key={tech}
-                  className="px-2 py-1 bg-gray-700 rounded text-xs"
+                  className="footer-tech-tag"
                 >
                   {tech}
                 </span>
@@ -61,7 +63,7 @@ const Footer: React.FC<FooterProps> = ({ year = new Date().getFullYear() }) => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+        <div className="footer-copyright">
           <p>© {year} Urdu OCR. Built with ❤️ for the Urdu language.</p>
         </div>
       </div>

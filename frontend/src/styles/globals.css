@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +10,7 @@ html,
 body {
   height: 100%;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #f9fafb;
 }
 
 #root {
@@ -46,55 +43,48 @@ body {
   direction: rtl;
 }
 
-/* Drag and drop zone */
-.dropzone {
-  @apply border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer transition-all duration-200;
-}
-
-.dropzone:hover,
-.dropzone.active {
-  @apply border-blue-500 bg-blue-50;
-}
-
-/* Canvas styling */
-.drawing-canvas {
-  @apply border-2 border-gray-300 rounded-lg cursor-crosshair touch-none;
-  background-color: white;
-}
-
-/* Prediction result card */
-.prediction-card {
-  @apply bg-white rounded-xl shadow-lg p-6 transition-all duration-300;
-}
-
-.prediction-card:hover {
-  @apply shadow-xl;
-}
-
-/* Progress bar animation */
-.progress-bar {
-  @apply h-2 bg-gray-200 rounded-full overflow-hidden;
-}
-
-.progress-fill {
-  @apply h-full bg-gradient-to-r from-blue-500 to-green-500 transition-all duration-500;
-}
-
-/* Loading spinner */
-.spinner {
-  @apply animate-spin rounded-full border-4 border-gray-200 border-t-blue-500;
-}
-
 /* Button styles */
 .btn-primary {
-  @apply bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #3b82f6;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .btn-secondary {
-  @apply bg-gray-200 text-gray-800 px-6 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-gray-300;
+  background-color: #e5e7eb;
+  color: #1f2937;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
 }
 
-/* Card hover effect */
-.card-hover {
-  @apply transition-transform duration-200 hover:scale-105;
+.btn-secondary:hover {
+  background-color: #d1d5db;
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

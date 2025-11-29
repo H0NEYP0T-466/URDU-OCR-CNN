@@ -6,6 +6,7 @@
 
 import type { PredictionResultProps } from '../types';
 import LoadingSpinner from './LoadingSpinner';
+import './PredictionResult.css';
 
 const PredictionResult: React.FC<PredictionResultProps> = ({
   result,
@@ -15,7 +16,7 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="prediction-card text-center">
+      <div className="prediction-card" style={{ textAlign: 'center' }}>
         <LoadingSpinner message="Analyzing character..." />
       </div>
     );
@@ -23,10 +24,10 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
 
   if (error) {
     return (
-      <div className="prediction-card bg-red-50 border border-red-200">
-        <div className="text-center">
+      <div className="prediction-card error">
+        <div className="prediction-error-content">
           <svg
-            className="w-12 h-12 text-red-500 mx-auto mb-3"
+            className="prediction-error-icon"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -38,8 +39,8 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
               d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <h3 className="text-lg font-semibold text-red-700 mb-2">Error</h3>
-          <p className="text-red-600 mb-4">{error}</p>
+          <h3 className="prediction-error-title">Error</h3>
+          <p className="prediction-error-message">{error}</p>
           <button onClick={onReset} className="btn-primary">
             Try Again
           </button>
@@ -50,10 +51,10 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
 
   if (!result) {
     return (
-      <div className="prediction-card bg-gray-50">
-        <div className="text-center text-gray-500">
+      <div className="prediction-card empty">
+        <div className="prediction-empty-content">
           <svg
-            className="w-16 h-16 mx-auto mb-4 text-gray-300"
+            className="prediction-empty-icon"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -65,7 +66,7 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
               d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
             />
           </svg>
-          <p className="text-lg">Upload or draw a character to see prediction</p>
+          <p className="prediction-empty-text">Upload or draw a character to see prediction</p>
         </div>
       </div>
     );
@@ -76,17 +77,17 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
   return (
     <div className="prediction-card">
       {/* Main Prediction */}
-      <div className="text-center mb-6">
-        <p className="text-sm text-gray-500 uppercase tracking-wide mb-2">Predicted Character</p>
-        <div className="urdu-text text-8xl font-bold text-blue-600 mb-4">
+      <div className="prediction-main">
+        <p className="prediction-label">Predicted Character</p>
+        <div className="urdu-text prediction-character">
           {result.prediction}
         </div>
         
         {/* Confidence Bar */}
-        <div className="max-w-xs mx-auto">
-          <div className="flex justify-between text-sm text-gray-600 mb-1">
+        <div className="confidence-container">
+          <div className="confidence-header">
             <span>Confidence</span>
-            <span className="font-medium">{confidencePercent}%</span>
+            <span className="confidence-value">{confidencePercent}%</span>
           </div>
           <div className="progress-bar">
             <div
@@ -98,33 +99,33 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
       </div>
 
       {/* Processing Time */}
-      <div className="text-center mb-6">
-        <span className="text-xs text-gray-400">
+      <div className="processing-time">
+        <span>
           Processing time: {result.processing_time_ms.toFixed(2)}ms
         </span>
       </div>
 
       {/* Top 5 Predictions */}
-      <div className="border-t pt-6">
-        <h4 className="text-sm font-semibold text-gray-700 mb-3">Top 5 Predictions</h4>
-        <div className="space-y-2">
+      <div className="top-predictions">
+        <h4 className="top-predictions-title">Top 5 Predictions</h4>
+        <div className="top-predictions-list">
           {result.top_5.map((pred, index) => (
             <div
               key={index}
-              className="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-2"
+              className="top-prediction-item"
             >
-              <div className="flex items-center space-x-3">
-                <span className="text-xs text-gray-400 w-4">{index + 1}.</span>
-                <span className="urdu-text text-2xl">{pred.character}</span>
+              <div className="top-prediction-left">
+                <span className="top-prediction-rank">{index + 1}.</span>
+                <span className="urdu-text top-prediction-char">{pred.character}</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div className="top-prediction-right">
+                <div className="top-prediction-bar">
                   <div
-                    className="h-full bg-blue-400"
+                    className="top-prediction-bar-fill"
                     style={{ width: `${pred.probability * 100}%` }}
                   />
                 </div>
-                <span className="text-sm text-gray-600 w-12 text-right">
+                <span className="top-prediction-percent">
                   {(pred.probability * 100).toFixed(1)}%
                 </span>
               </div>
@@ -134,7 +135,7 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
       </div>
 
       {/* Try Again Button */}
-      <div className="mt-6 text-center">
+      <div className="prediction-reset">
         <button onClick={onReset} className="btn-secondary">
           Try Another Image
         </button>

@@ -1,0 +1,98 @@
+.image-uploader-wrapper {
+  width: 100%;
+}
+
+.dropzone {
+  border: 2px dashed #d1d5db;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropzone:hover,
+.dropzone.active {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.dropzone.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropzone-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dropzone-preview img {
+  max-height: 12rem;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dropzone-preview-name {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.dropzone-preview-size {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.dropzone-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dropzone-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.dropzone-text {
+  font-size: 1.125rem;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.dropzone-subtext {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.dropzone-formats {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}
+
+.image-uploader-error {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+}
+
+.image-uploader-error p {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.image-uploader-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
