@@ -3,7 +3,7 @@
  */
 
 import { useState, useCallback } from 'react';
-import type { PredictionResponse, PredictionState } from '../types';
+import type { PredictionState } from '../types';
 import { predictFromImage, predictFromCanvas } from '../services/api';
 
 export interface UsePredictionReturn {
