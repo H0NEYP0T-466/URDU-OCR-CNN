@@ -10,13 +10,14 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import HowItWorksPage from './pages/HowItWorksPage';
+import './styles/App.css';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-gray-50">
+      <div className="app-container">
         <Header title="Urdu OCR" />
-        <main className="flex-grow">
+        <main className="app-main">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />

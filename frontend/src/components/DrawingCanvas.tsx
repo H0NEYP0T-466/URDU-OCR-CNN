@@ -6,6 +6,7 @@
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 import type { DrawingCanvasProps } from '../types';
+import './DrawingCanvas.css';
 
 const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
   onSubmit,
@@ -126,15 +127,15 @@ const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
   };
 
   return (
-    <div className="w-full">
+    <div className="drawing-canvas-wrapper">
       {/* Canvas Container */}
-      <div className="relative">
+      <div className="drawing-canvas-container">
         <canvas
           ref={canvasRef}
           width={400}
           height={400}
-          className={`drawing-canvas w-full max-w-md mx-auto block ${
-            disabled || isLoading ? 'opacity-50 cursor-not-allowed' : ''
+          className={`drawing-canvas ${
+            disabled || isLoading ? 'disabled' : ''
           }`}
           onMouseDown={startDrawing}
           onMouseMove={draw}
@@ -147,29 +148,28 @@ const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
         
         {/* Instructions overlay */}
         {!hasContent && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <p className="text-gray-400 text-lg">Draw an Urdu character here</p>
+          <div className="drawing-canvas-instructions">
+            <p>Draw an Urdu character here</p>
           </div>
         )}
       </div>
 
       {/* Brush Size Control */}
-      <div className="mt-4 flex items-center justify-center space-x-4">
-        <label className="text-sm text-gray-600">Brush Size:</label>
+      <div className="brush-control">
+        <label>Brush Size:</label>
         <input
           type="range"
           min="5"
           max="30"
           value={brushSize}
           onChange={(e) => setBrushSize(parseInt(e.target.value))}
-          className="w-32"
           disabled={disabled || isLoading}
         />
-        <span className="text-sm text-gray-600 w-8">{brushSize}px</span>
+        <span>{brushSize}px</span>
       </div>
 
       {/* Action Buttons */}
-      <div className="mt-4 flex justify-center space-x-4">
+      <div className="canvas-actions">
         <button
           onClick={clearCanvas}
           className="btn-secondary"

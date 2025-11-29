@@ -1,0 +1,68 @@
+.drawing-canvas-wrapper {
+  width: 100%;
+}
+
+.drawing-canvas-container {
+  position: relative;
+}
+
+.drawing-canvas {
+  border: 2px solid #d1d5db;
+  border-radius: 0.5rem;
+  cursor: crosshair;
+  touch-action: none;
+  background-color: white;
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  display: block;
+}
+
+.drawing-canvas.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.drawing-canvas-instructions {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.drawing-canvas-instructions p {
+  color: #9ca3af;
+  font-size: 1.125rem;
+}
+
+.brush-control {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.brush-control label {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.brush-control input[type="range"] {
+  width: 8rem;
+}
+
+.brush-control span {
+  font-size: 0.875rem;
+  color: #4b5563;
+  width: 2rem;
+}
+
+.canvas-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

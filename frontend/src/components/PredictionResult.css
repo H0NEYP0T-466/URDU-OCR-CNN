@@ -1,0 +1,194 @@
+.prediction-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.prediction-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.prediction-card.error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.prediction-card.empty {
+  background-color: #f9fafb;
+}
+
+.prediction-error-content {
+  text-align: center;
+}
+
+.prediction-error-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #ef4444;
+  margin: 0 auto 0.75rem;
+}
+
+.prediction-error-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #b91c1c;
+  margin-bottom: 0.5rem;
+}
+
+.prediction-error-message {
+  color: #dc2626;
+  margin-bottom: 1rem;
+}
+
+.prediction-empty-content {
+  text-align: center;
+  color: #6b7280;
+}
+
+.prediction-empty-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem;
+  color: #d1d5db;
+}
+
+.prediction-empty-text {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.prediction-main {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.prediction-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.prediction-character {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 1rem;
+}
+
+.confidence-container {
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.confidence-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 0.25rem;
+}
+
+.confidence-value {
+  font-weight: 500;
+}
+
+.progress-bar {
+  height: 0.5rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #3b82f6, #10b981);
+  transition: all 0.5s ease;
+}
+
+.processing-time {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.processing-time span {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.top-predictions {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+}
+
+.top-predictions-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.75rem;
+}
+
+.top-predictions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.top-prediction-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.top-prediction-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.top-prediction-rank {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  width: 1rem;
+}
+
+.top-prediction-char {
+  font-size: 1.5rem;
+}
+
+.top-prediction-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.top-prediction-bar {
+  width: 6rem;
+  height: 0.5rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.top-prediction-bar-fill {
+  height: 100%;
+  background-color: #60a5fa;
+}
+
+.top-prediction-percent {
+  font-size: 0.875rem;
+  color: #4b5563;
+  width: 3rem;
+  text-align: right;
+}
+
+.prediction-reset {
+  margin-top: 1.5rem;
+  text-align: center;
+}
