@@ -1,0 +1,198 @@
+.prediction-result {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.prediction-result:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.prediction-result-loading {
+  text-align: center;
+}
+
+.prediction-result-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.prediction-result-error-content {
+  text-align: center;
+}
+
+.prediction-result-error-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #ef4444;
+  margin: 0 auto 0.75rem;
+}
+
+.prediction-result-error-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #b91c1c;
+  margin-bottom: 0.5rem;
+}
+
+.prediction-result-error-message {
+  color: #dc2626;
+  margin-bottom: 1rem;
+}
+
+.prediction-result-placeholder {
+  background-color: #f9fafb;
+}
+
+.prediction-result-placeholder-content {
+  text-align: center;
+  color: #6b7280;
+}
+
+.prediction-result-placeholder-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem;
+  color: #d1d5db;
+}
+
+.prediction-result-placeholder-text {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.prediction-result-main {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.prediction-result-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.prediction-result-character {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 1rem;
+}
+
+.prediction-result-confidence {
+  max-width: 16rem;
+  margin: 0 auto;
+}
+
+.prediction-result-confidence-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 0.25rem;
+}
+
+.prediction-result-confidence-value {
+  font-weight: 500;
+}
+
+.prediction-result-confidence-bar {
+  height: 0.5rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.prediction-result-confidence-fill {
+  height: 100%;
+  background: linear-gradient(to right, #3b82f6, #10b981);
+  transition: width 0.5s;
+}
+
+.prediction-result-time {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.prediction-result-time span {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.prediction-result-top5 {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+}
+
+.prediction-result-top5-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.75rem;
+}
+
+.prediction-result-top5-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prediction-result-top5-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.prediction-result-top5-item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.prediction-result-top5-item-rank {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  width: 1rem;
+}
+
+.prediction-result-top5-item-character {
+  font-size: 1.5rem;
+}
+
+.prediction-result-top5-item-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prediction-result-top5-item-bar {
+  width: 6rem;
+  height: 0.5rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.prediction-result-top5-item-bar-fill {
+  height: 100%;
+  background-color: #60a5fa;
+}
+
+.prediction-result-top5-item-percent {
+  font-size: 0.875rem;
+  color: #4b5563;
+  width: 3rem;
+  text-align: right;
+}
+
+.prediction-result-actions {
+  margin-top: 1.5rem;
+  text-align: center;
+}

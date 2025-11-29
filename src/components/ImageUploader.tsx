@@ -8,6 +8,7 @@ import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { validateImage, createImagePreview, revokeImagePreview, formatFileSize } from '../utils/imageUtils';
 import type { ImageUploaderProps } from '../types';
+import './ImageUploader.css';
 
 const ImageUploader: React.FC<ImageUploaderProps> = ({ 
   onImageSelect, 
@@ -67,30 +68,30 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
   });
 
   return (
-    <div className="w-full">
+    <div className="image-uploader">
       {/* Drop Zone */}
       <div
         {...getRootProps()}
-        className={`dropzone ${isDragActive ? 'active' : ''} ${
-          disabled || isLoading ? 'opacity-50 cursor-not-allowed' : ''
+        className={`image-uploader-dropzone ${isDragActive ? 'active' : ''} ${
+          disabled || isLoading ? 'disabled' : ''
         }`}
       >
         <input {...getInputProps()} />
         
         {preview ? (
-          <div className="flex flex-col items-center">
+          <div className="image-uploader-preview">
             <img
               src={preview}
               alt="Preview"
-              className="max-h-48 max-w-full rounded-lg mb-4 shadow-md"
+              className="image-uploader-preview-image"
             />
-            <p className="text-sm text-gray-600">{selectedFile?.name}</p>
-            <p className="text-xs text-gray-500">{selectedFile && formatFileSize(selectedFile.size)}</p>
+            <p className="image-uploader-filename">{selectedFile?.name}</p>
+            <p className="image-uploader-filesize">{selectedFile && formatFileSize(selectedFile.size)}</p>
           </div>
         ) : (
-          <div className="flex flex-col items-center">
+          <div className="image-uploader-placeholder">
             <svg
-              className="w-16 h-16 text-gray-400 mb-4"
+              className="image-uploader-icon"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -102,25 +103,25 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
               />
             </svg>
-            <p className="text-lg text-gray-600 mb-2">
+            <p className="image-uploader-text">
               {isDragActive ? 'Drop the image here...' : 'Drag & drop an image here'}
             </p>
-            <p className="text-sm text-gray-500">or click to select a file</p>
-            <p className="text-xs text-gray-400 mt-2">PNG, JPG, JPEG, BMP (max 5MB)</p>
+            <p className="image-uploader-subtext">or click to select a file</p>
+            <p className="image-uploader-formats">PNG, JPG, JPEG, BMP (max 5MB)</p>
           </div>
         )}
       </div>
 
       {/* Error Message */}
       {error && (
-        <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-600 text-sm">{error}</p>
+        <div className="image-uploader-error">
+          <p>{error}</p>
         </div>
       )}
 
       {/* Action Buttons */}
       {preview && (
-        <div className="mt-4 flex justify-center space-x-4">
+        <div className="image-uploader-actions">
           <button
             onClick={handleClear}
             className="btn-secondary"
