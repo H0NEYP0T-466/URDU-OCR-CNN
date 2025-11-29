@@ -15,7 +15,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 'md',
   message = 'Processing...' 
 }) => {
-  const sizeClasses: Record<string, string> = {
+  const sizeClasses: Record<'sm' | 'md' | 'lg', string> = {
     sm: 'spinner-sm',
     md: 'spinner-md',
     lg: 'spinner-lg',

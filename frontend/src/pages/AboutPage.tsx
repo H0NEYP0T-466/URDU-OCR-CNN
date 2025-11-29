@@ -6,6 +6,9 @@
 
 import './AboutPage.css';
 
+const FRONTEND_TECHNOLOGIES = ['React 18', 'TypeScript', 'Vite', 'CSS', 'Axios', 'React Router'];
+const BACKEND_TECHNOLOGIES = ['FastAPI', 'Python 3.10+', 'TensorFlow/Keras', 'OpenCV', 'NumPy', 'Pillow'];
+
 const AboutPage: React.FC = () => {
   const urduCharacters = [
     'ا', 'ب', 'پ', 'ت', 'ٹ', 'ث', 'ج', 'چ', 'ح', 'خ',
@@ -52,7 +55,7 @@ const AboutPage: React.FC = () => {
           <div className="tech-stack-card">
             <h3 className="frontend">Frontend</h3>
             <ul className="tech-list">
-              {['React 18', 'TypeScript', 'Vite', 'CSS', 'Axios', 'React Router'].map((tech) => (
+              {FRONTEND_TECHNOLOGIES.map((tech) => (
                 <li key={tech} className="tech-list-item">
                   <svg fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -67,7 +70,7 @@ const AboutPage: React.FC = () => {
           <div className="tech-stack-card">
             <h3 className="backend">Backend</h3>
             <ul className="tech-list">
-              {['FastAPI', 'Python 3.10+', 'TensorFlow/Keras', 'OpenCV', 'NumPy', 'Pillow'].map((tech) => (
+              {BACKEND_TECHNOLOGIES.map((tech) => (
                 <li key={tech} className="tech-list-item">
                   <svg fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
