@@ -8,7 +8,7 @@ Supports environment variables and .env files.
 import os
 from functools import lru_cache
 from pathlib import Path
-from typing import List
+from typing import List, Tuple
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -31,7 +31,7 @@ class Settings(BaseSettings):
     ALLOWED_EXTENSIONS: List[str] = [".png", ".jpg", ".jpeg", ".bmp"]
 
     # Image processing settings
-    IMAGE_SIZE: tuple = (64, 64)
+    IMAGE_SIZE: Tuple[int, int] = (64, 64)
 
     # Logging settings
     LOG_LEVEL: str = "INFO"

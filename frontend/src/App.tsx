@@ -10,7 +10,6 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import HowItWorksPage from './pages/HowItWorksPage';
-import './styles/globals.css';
 
 function App() {
   return (
