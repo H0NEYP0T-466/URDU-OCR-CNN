@@ -7,10 +7,42 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Frontend
 node_modules
 dist
 dist-ssr
 *.local
+frontend/node_modules
+frontend/dist
+
+# Backend
+backend/__pycache__
+backend/**/__pycache__
+backend/**/*.pyc
+backend/.env
+backend/venv
+backend/env
+backend/.venv
+*.pyc
+__pycache__
+.pytest_cache
+.coverage
+htmlcov
+
+# Model files (large files)
+backend/saved_models/*.h5
+backend/saved_models/*.keras
+backend/saved_models/training_history.json
+
+# Data files (too large for git)
+backend/data/raw/*
+!backend/data/raw/.gitkeep
+backend/data/processed/*
+!backend/data/processed/.gitkeep
+
+# Log files
+backend/logs/*
+!backend/logs/.gitkeep
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +54,22 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Test coverage
+coverage
+.nyc_output
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
