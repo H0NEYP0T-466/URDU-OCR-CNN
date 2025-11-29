@@ -1,0 +1,98 @@
+.image-uploader {
+  width: 100%;
+}
+
+.image-uploader-dropzone {
+  border: 2px dashed #d1d5db;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.image-uploader-dropzone:hover,
+.image-uploader-dropzone.active {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.image-uploader-dropzone.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.image-uploader-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-uploader-preview-image {
+  max-height: 12rem;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.image-uploader-filename {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.image-uploader-filesize {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.image-uploader-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-uploader-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.image-uploader-text {
+  font-size: 1.125rem;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.image-uploader-subtext {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.image-uploader-formats {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}
+
+.image-uploader-error {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+}
+
+.image-uploader-error p {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.image-uploader-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
