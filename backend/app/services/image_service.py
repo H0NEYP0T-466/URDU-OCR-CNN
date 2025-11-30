@@ -10,7 +10,7 @@ from typing import Tuple, Optional
 
 import cv2
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageOps
 
 from app.config import get_settings
 from app.core.exceptions import (
@@ -24,6 +24,10 @@ from app.utils.helpers import base64_to_image, get_file_extension
 
 logger = get_logger(__name__)
 settings = get_settings()
+
+# Threshold for determining if background is light (0-255 scale)
+# Values above this threshold indicate a light/white background
+LIGHT_BACKGROUND_THRESHOLD = 128
 
 
 class ImageService:
@@ -141,10 +145,9 @@ class ImageService:
                 mean_background = np.mean(corners)
                 logger.debug(f"Mean background (corners): {mean_background:.2f}")
 
-                # If background is light (> 128), invert the image
+                # If background is light, invert the image
                 # Training data has dark background (~0) with light characters (~255)
-                if mean_background > 128:
-                    from PIL import ImageOps
+                if mean_background > LIGHT_BACKGROUND_THRESHOLD:
                     image = ImageOps.invert(image)
                     logger.info("Inverted image colors to match training data format (dark background)")
 
