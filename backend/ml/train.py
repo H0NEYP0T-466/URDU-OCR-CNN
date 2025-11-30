@@ -23,8 +23,11 @@ from app.logger import setup_logger
 from app.models.cnn_model import compile_model, create_cnn_model, get_callbacks
 from ml.augmentation import create_data_generator, get_training_generator
 from ml.preprocess import (
+    check_dataset_structure,
+    get_dataset_paths,
     load_dataset,
     load_processed_data,
+    load_split_dataset,
     preprocess_images,
     save_class_mapping,
     save_processed_data,
@@ -45,12 +48,14 @@ def train_model(
     learning_rate: float = 0.001,
     use_augmentation: bool = True,
     use_processed: bool = False,
+    dataset_type: str = "characters",
+    use_split_dirs: bool = True,
 ) -> None:
     """
     Train the CNN model for Urdu character recognition.
 
     Args:
-        data_dir: Path to raw dataset
+        data_dir: Path to raw dataset base directory
         processed_dir: Path to save/load processed data
         model_save_path: Path to save the trained model
         class_labels_path: Path to save class labels
@@ -60,6 +65,8 @@ def train_model(
         learning_rate: Initial learning rate
         use_augmentation: Whether to use data augmentation
         use_processed: Whether to load pre-processed data
+        dataset_type: Type of dataset ('characters' or 'digits')
+        use_split_dirs: Whether to use separate train/test directories
     """
     logger.info("=" * 60)
     logger.info("URDU CHARACTER RECOGNITION MODEL TRAINING")
@@ -78,6 +85,8 @@ def train_model(
     logger.info(f"  Max epochs: {epochs}")
     logger.info(f"  Learning rate: {learning_rate}")
     logger.info(f"  Use augmentation: {use_augmentation}")
+    logger.info(f"  Dataset type: {dataset_type}")
+    logger.info(f"  Use split directories: {use_split_dirs}")
 
     # Ensure directories exist
     Path(model_save_path).parent.mkdir(parents=True, exist_ok=True)
@@ -88,45 +97,112 @@ def train_model(
         logger.info("Loading pre-processed data...")
         X_train, X_val, X_test, y_train, y_val, y_test = load_processed_data(processed_dir)
 
-        # Load class mapping
-        with open(class_labels_path, "r", encoding="utf-8") as f:
+        # Load class mapping from the processed directory first, then fallback to class_labels_path
+        processed_labels_path = Path(processed_dir) / "class_labels.json"
+        labels_path = processed_labels_path if processed_labels_path.exists() else class_labels_path
+
+        with open(labels_path, "r", encoding="utf-8") as f:
             class_mapping = {int(k): v for k, v in json.load(f).items()}
 
     else:
         logger.info("Loading and preprocessing raw data...")
 
-        # Check if raw data exists
-        if not Path(data_dir).exists() or not list(Path(data_dir).iterdir()):
-            logger.warning(f"No dataset found in {data_dir}")
-            logger.info("Creating a demo model with default character classes...")
-            logger.info("")
-            logger.info("To train with real data, please:")
-            logger.info("1. Download an Urdu handwritten character dataset")
-            logger.info("2. Place it in backend/data/raw/ with the following structure:")
-            logger.info("   data/raw/")
-            logger.info("   ├── alif/")
-            logger.info("   │   ├── img001.png")
-            logger.info("   │   └── ...")
-            logger.info("   ├── bay/")
-            logger.info("   └── ...")
-            logger.info("")
+        # Check dataset structure
+        datasets_available = check_dataset_structure(data_dir)
 
-            # Create a simple demo model without training
-            create_demo_model(model_save_path, class_labels_path)
-            return
+        # Check if split directories should be used
+        if use_split_dirs:
+            train_dir_key = f"{dataset_type}_train"
+            test_dir_key = f"{dataset_type}_test"
 
-        # Load dataset
-        images, labels, class_mapping = load_dataset(data_dir, (image_size, image_size))
+            if datasets_available.get(train_dir_key) and datasets_available.get(test_dir_key):
+                # Use separate train/test directories
+                train_dir, test_dir = get_dataset_paths(data_dir, dataset_type)
+                logger.info(f"Using split dataset: {dataset_type}")
 
-        # Preprocess
-        images = preprocess_images(images)
+                X_train, X_val, X_test, y_train, y_val, y_test, class_mapping = load_split_dataset(
+                    train_dir, test_dir,
+                    image_size=(image_size, image_size),
+                )
 
-        # Split
-        X_train, X_val, X_test, y_train, y_val, y_test = split_dataset(images, labels)
+                # Check if we loaded any data
+                if len(X_train) == 0 or len(class_mapping) == 0:
+                    logger.warning(f"No images found in {dataset_type} dataset directories!")
+                    logger.info("The directories exist but contain no images.")
+                    logger.info("Creating a demo model with default character classes...")
+                    logger.info("")
+                    logger.info("Please add images to the dataset directories:")
+                    logger.info(f"  Train: {train_dir}")
+                    logger.info(f"  Test: {test_dir}")
+                    logger.info("")
+                    logger.info("Expected structure for characters:")
+                    logger.info("  characters_train_set/")
+                    logger.info("  ├── alif/")
+                    logger.info("  │   ├── img001.png")
+                    logger.info("  │   └── ...")
+                    logger.info("  └── baa/")
+                    logger.info("      └── ...")
+                    logger.info("")
+                    create_demo_model(model_save_path, class_labels_path)
+                    return
 
-        # Save processed data
-        save_processed_data(X_train, X_val, X_test, y_train, y_val, y_test, processed_dir)
-        save_class_mapping(class_mapping, class_labels_path)
+                # Save processed data
+                save_processed_data(X_train, X_val, X_test, y_train, y_val, y_test, processed_dir)
+                save_class_mapping(class_mapping, class_labels_path)
+                # Also save to processed dir for consistency
+                save_class_mapping(class_mapping, str(Path(processed_dir) / "class_labels.json"))
+            else:
+                # Fallback to checking for any subdirectory structure
+                logger.warning(f"Split directories for {dataset_type} not found")
+                if not Path(data_dir).exists() or not list(Path(data_dir).iterdir()):
+                    logger.warning(f"No dataset found in {data_dir}")
+                    logger.info("Creating a demo model with default character classes...")
+                    logger.info("")
+                    logger.info("To train with real data, please:")
+                    logger.info("1. Download an Urdu handwritten character dataset")
+                    logger.info("2. Place it in backend/data/raw/ with the following structure:")
+                    logger.info("   data/raw/")
+                    logger.info("   ├── characters_train_set/")
+                    logger.info("   │   ├── alif/")
+                    logger.info("   │   │   ├── img001.png")
+                    logger.info("   │   │   └── ...")
+                    logger.info("   │   └── baa/")
+                    logger.info("   │       └── ...")
+                    logger.info("   └── characters_test_set/")
+                    logger.info("       └── ...")
+                    logger.info("")
+                    logger.info("Or for digits:")
+                    logger.info("   data/raw/")
+                    logger.info("   ├── digits_train_set/")
+                    logger.info("   │   ├── 0/")
+                    logger.info("   │   ├── 1/")
+                    logger.info("   │   └── ...")
+                    logger.info("   └── digits_test_set/")
+                    logger.info("       └── ...")
+                    logger.info("")
+
+                    # Create a simple demo model without training
+                    create_demo_model(model_save_path, class_labels_path)
+                    return
+        else:
+            # Legacy single directory mode
+            if not Path(data_dir).exists() or not list(Path(data_dir).iterdir()):
+                logger.warning(f"No dataset found in {data_dir}")
+                create_demo_model(model_save_path, class_labels_path)
+                return
+
+            # Load dataset
+            images, labels, class_mapping = load_dataset(data_dir, (image_size, image_size))
+
+            # Preprocess
+            images = preprocess_images(images)
+
+            # Split
+            X_train, X_val, X_test, y_train, y_val, y_test = split_dataset(images, labels)
+
+            # Save processed data
+            save_processed_data(X_train, X_val, X_test, y_train, y_val, y_test, processed_dir)
+            save_class_mapping(class_mapping, class_labels_path)
 
     # Get number of classes
     num_classes = len(class_mapping)
@@ -261,7 +337,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Train Urdu character recognition model")
-    parser.add_argument("--data-dir", type=str, default="data/raw", help="Path to raw dataset")
+    parser.add_argument("--data-dir", type=str, default="data/raw", help="Path to raw dataset base directory")
     parser.add_argument("--processed-dir", type=str, default="data/processed", help="Path for processed data")
     parser.add_argument("--model-path", type=str, default="saved_models/urdu_cnn_model.h5", help="Model save path")
     parser.add_argument("--labels-path", type=str, default="saved_models/class_labels.json", help="Class labels path")
@@ -271,6 +347,10 @@ if __name__ == "__main__":
     parser.add_argument("--lr", type=float, default=0.001, help="Learning rate")
     parser.add_argument("--no-augmentation", action="store_true", help="Disable data augmentation")
     parser.add_argument("--use-processed", action="store_true", help="Use pre-processed data")
+    parser.add_argument("--dataset-type", type=str, default="characters",
+                       choices=["characters", "digits"], help="Dataset type to train on")
+    parser.add_argument("--no-split-dirs", action="store_true",
+                       help="Disable split train/test directories (use legacy single directory mode)")
 
     args = parser.parse_args()
 
@@ -285,4 +365,6 @@ if __name__ == "__main__":
         learning_rate=args.lr,
         use_augmentation=not args.no_augmentation,
         use_processed=args.use_processed,
+        dataset_type=args.dataset_type,
+        use_split_dirs=not args.no_split_dirs,
     )

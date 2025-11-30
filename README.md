@@ -89,9 +89,14 @@ urdu-character-recognition/
 │   │   ├── train.py
 │   │   ├── evaluate.py
 │   │   ├── preprocess.py
-│   │   └── augmentation.py
+│   │   ├── augmentation.py
+│   │   └── verify_dataset.py
 │   ├── data/
 │   │   ├── raw/
+│   │   │   ├── characters_train_set/
+│   │   │   ├── characters_test_set/
+│   │   │   ├── digits_train_set/
+│   │   │   └── digits_test_set/
 │   │   └── processed/
 │   ├── saved_models/
 │   ├── logs/
@@ -206,7 +211,77 @@ docker-compose up -d
 
 ### 1. Prepare Dataset
 
-Download an Urdu handwritten character dataset and place it in `backend/data/raw/`:
+Download an Urdu handwritten character dataset and place it in `backend/data/raw/`.
+
+#### Recommended Structure (Split Train/Test)
+
+The recommended structure uses separate train and test directories:
+
+```
+backend/data/raw/
+├── characters_train_set/
+│   ├── alif/
+│   │   ├── img001.png
+│   │   └── ...
+│   ├── alif mad aa/
+│   ├── ayn/
+│   ├── baa/
+│   ├── bari yaa/
+│   ├── cheey/
+│   ├── choti yaa/
+│   ├── daal/
+│   ├── dhaal/
+│   ├── faa/
+│   ├── gaaf/
+│   ├── ghain/
+│   ├── haa1/
+│   ├── haa2/
+│   ├── haa3/
+│   ├── hamza/
+│   ├── jeem/
+│   ├── kaaf/
+│   ├── khaa/
+│   ├── laam/
+│   ├── meem/
+│   ├── noon/
+│   ├── noonghunna/
+│   ├── paa/
+│   ├── qaaf/
+│   ├── raa/
+│   ├── rhraa/
+│   ├── seen/
+│   ├── seey/
+│   ├── sheen/
+│   ├── swaad/
+│   ├── taa/
+│   ├── ttaa/
+│   ├── twa/
+│   ├── waw/
+│   ├── zaaa/
+│   ├── zaal/
+│   ├── zhaa/
+│   ├── zwaa/
+│   └── zwaad/
+├── characters_test_set/
+│   └── (same structure as train set)
+├── digits_train_set/
+│   ├── 0/
+│   ├── 1/
+│   ├── 2/
+│   ├── 3/
+│   ├── 4/
+│   ├── 5/
+│   ├── 6/
+│   ├── 7/
+│   ├── 8/
+│   └── 9/
+└── digits_test_set/
+    └── (same structure as train set)
+```
+
+#### Legacy Structure (Single Directory)
+
+You can also use a single directory with all classes:
 
 ```
 backend/data/raw/
@@ -219,14 +294,54 @@ backend/data/raw/
 └── ...
 ```
 
-### 2. Train
+### 2. Verify Dataset
+
+Before training, verify your dataset structure:
 
 ```bash
 cd backend
-python -m ml.train
+python -m ml.verify_dataset --data-dir data/raw
 ```
 
-### 3. Evaluate
+To also test data loading:
+```bash
+python -m ml.verify_dataset --data-dir data/raw --test-load
+```
+
+### 3. Train
+
+#### Train Character Model (Recommended)
+```bash
+cd backend
+python -m ml.train --dataset-type characters
+```
+
+#### Train Digit Model
+```bash
+cd backend
+python -m ml.train --dataset-type digits --model-path saved_models/urdu_digits_model.h5 --labels-path saved_models/digit_labels.json
+```
+
+#### Training Options
+```bash
+python -m ml.train --help
+
+Options:
+  --data-dir          Base directory for raw data (default: data/raw)
+  --processed-dir     Directory for processed data (default: data/processed)
+  --model-path        Path to save the model (default: saved_models/urdu_cnn_model.h5)
+  --labels-path       Path to save class labels (default: saved_models/class_labels.json)
+  --dataset-type      Dataset type: 'characters' or 'digits' (default: characters)
+  --image-size        Image size (default: 64)
+  --batch-size        Batch size (default: 32)
+  --epochs            Number of epochs (default: 100)
+  --lr                Learning rate (default: 0.001)
+  --no-augmentation   Disable data augmentation
+  --use-processed     Use pre-processed data if available
+  --no-split-dirs     Use legacy single directory mode
+```
+
+### 4. Evaluate
 
 ```bash
 python -m ml.evaluate
