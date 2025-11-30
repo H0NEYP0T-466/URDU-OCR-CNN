@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from app.config import FOLDER_TO_CHARACTER, FOLDER_TO_DIGIT, get_urdu_character_from_folder
 from app.logger import setup_logger
-from ml.preprocess import check_dataset_structure, get_dataset_paths, load_dataset
+from ml.preprocess import check_dataset_structure, get_dataset_paths, get_image_files, load_dataset
 
 logger = setup_logger(name="verify_dataset", log_level="INFO", log_file="logs/verify.log")
 
@@ -84,12 +84,7 @@ def verify_character_dataset(data_path: Path, name: str) -> None:
         urdu_char = get_urdu_character_from_folder(folder_name)
 
         # Count images
-        image_files = (
-            list(class_dir.glob("*.png")) +
-            list(class_dir.glob("*.jpg")) +
-            list(class_dir.glob("*.jpeg")) +
-            list(class_dir.glob("*.bmp"))
-        )
+        image_files = get_image_files(class_dir)
         num_images = len(image_files)
         total_images += num_images
 
@@ -134,12 +129,7 @@ def verify_digit_dataset(data_path: Path, name: str) -> None:
         urdu_digit = get_urdu_character_from_folder(folder_name)
 
         # Count images
-        image_files = (
-            list(class_dir.glob("*.png")) +
-            list(class_dir.glob("*.jpg")) +
-            list(class_dir.glob("*.jpeg")) +
-            list(class_dir.glob("*.bmp"))
-        )
+        image_files = get_image_files(class_dir)
         num_images = len(image_files)
         total_images += num_images
 

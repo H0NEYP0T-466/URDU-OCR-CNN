@@ -23,6 +23,26 @@ from app.logger import setup_logger
 logger = setup_logger(name="ml_preprocess", log_level="INFO", log_file="logs/training.log")
 
 
+# Supported image extensions
+IMAGE_EXTENSIONS = ["*.png", "*.jpg", "*.jpeg", "*.bmp"]
+
+
+def get_image_files(directory: Path) -> List[Path]:
+    """
+    Get all image files from a directory.
+
+    Args:
+        directory: Path to the directory
+
+    Returns:
+        List of paths to image files
+    """
+    image_files = []
+    for ext in IMAGE_EXTENSIONS:
+        image_files.extend(directory.glob(ext))
+    return image_files
+
+
 def load_dataset(
     data_dir: str,
     image_size: Tuple[int, int] = (64, 64),
@@ -66,7 +86,7 @@ def load_dataset(
         logger.info(f"Processing class {class_idx}: {class_name}")
 
         # Get all images in the class directory
-        image_files = list(class_dir.glob("*.png")) + list(class_dir.glob("*.jpg")) + list(class_dir.glob("*.jpeg")) + list(class_dir.glob("*.bmp"))
+        image_files = get_image_files(class_dir)
 
         logger.info(f"  Found {len(image_files)} images")
 
@@ -145,7 +165,7 @@ def load_dataset_with_mapping(
         logger.info(f"Processing class {class_idx}: {class_name}")
 
         # Get all images in the class directory
-        image_files = list(class_dir.glob("*.png")) + list(class_dir.glob("*.jpg")) + list(class_dir.glob("*.jpeg")) + list(class_dir.glob("*.bmp"))
+        image_files = get_image_files(class_dir)
 
         logger.info(f"  Found {len(image_files)} images")
 
