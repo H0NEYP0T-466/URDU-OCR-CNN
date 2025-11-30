@@ -177,3 +177,83 @@ URDU_CHARACTER_NAMES = {
     "۸": "Eight",
     "۹": "Nine",
 }
+
+# Mapping from folder names to Urdu characters
+# Based on the dataset structure: characters_train_set/{folder_name}/
+FOLDER_TO_CHARACTER = {
+    "alif": "ا",
+    "alif mad aa": "آ",  # Alif with madda
+    "ayn": "ع",
+    "baa": "ب",
+    "bari yaa": "ے",
+    "cheey": "چ",
+    "choti yaa": "ی",
+    "daal": "د",
+    "dhaal": "ڈ",
+    "faa": "ف",
+    "gaaf": "گ",
+    "ghain": "غ",
+    "haa1": "ح",  # Hay (gol)
+    "haa2": "ہ",  # Hay (choti)
+    "haa3": "ھ",  # Do chashmi hay
+    "hamza": "ء",
+    "jeem": "ج",
+    "kaaf": "ک",
+    "khaa": "خ",
+    "laam": "ل",
+    "meem": "م",
+    "noon": "ن",
+    "noonghunna": "ں",  # Noon ghunna
+    "paa": "پ",
+    "qaaf": "ق",
+    "raa": "ر",
+    "rhraa": "ڑ",  # Rray
+    "seen": "س",
+    "seey": "ث",  # Say/Seey
+    "sheen": "ش",
+    "swaad": "ص",
+    "taa": "ت",
+    "ttaa": "ٹ",
+    "twa": "ط",  # Toay
+    "waw": "و",
+    "zaaa": "ز",  # Zay
+    "zaal": "ذ",
+    "zhaa": "ژ",
+    "zwaa": "ظ",  # Zoay
+    "zwaad": "ض",  # Dwad/Zwad
+}
+
+# Mapping from folder names to Urdu digit characters
+# Based on the dataset structure: digits_train_set/{folder_name}/
+FOLDER_TO_DIGIT = {
+    "0": "۰",
+    "1": "۱",
+    "2": "۲",
+    "3": "۳",
+    "4": "۴",
+    "5": "۵",
+    "6": "۶",
+    "7": "۷",
+    "8": "۸",
+    "9": "۹",
+}
+
+
+def get_urdu_character_from_folder(folder_name: str) -> str:
+    """
+    Get the Urdu character corresponding to a folder name.
+
+    Args:
+        folder_name: Name of the folder (e.g., 'alif', 'baa', '0', '1')
+
+    Returns:
+        The corresponding Urdu character, or the folder name if not found
+    """
+    # Check characters first
+    if folder_name in FOLDER_TO_CHARACTER:
+        return FOLDER_TO_CHARACTER[folder_name]
+    # Then check digits
+    if folder_name in FOLDER_TO_DIGIT:
+        return FOLDER_TO_DIGIT[folder_name]
+    # Return the folder name as-is if no mapping found
+    return folder_name
