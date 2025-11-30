@@ -38,11 +38,11 @@ class Settings(BaseSettings):
     LOG_FILE: str = "logs/app.log"
 
     # CORS settings
-    CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://localhost:3000"]
+    CORS_ORIGINS: List[str] = ["*"]
 
     # Server settings
     HOST: str = "0.0.0.0"
-    PORT: int = 8000
+    PORT: int = 3000
 
     # Model configuration
     model_config = SettingsConfigDict(

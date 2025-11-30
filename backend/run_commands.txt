@@ -1,2 +1,2 @@
 venv312\Scripts\activate
-uvicorn App.main:app --reload --port 8888
+uvicorn app.main:app --reload --port 8888
