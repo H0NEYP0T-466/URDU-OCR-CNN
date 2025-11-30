@@ -29,10 +29,7 @@ __pycache__
 .coverage
 htmlcov
 
-# Model files (large files)
-backend/saved_models/*.h5
-backend/saved_models/*.keras
-backend/saved_models/training_history.json
+
 
 # Data files (too large for git)
 backend/data/raw/*
@@ -40,9 +37,6 @@ backend/data/raw/*
 backend/data/processed/*
 !backend/data/processed/.gitkeep
 
-# Log files
-backend/logs/*
-!backend/logs/.gitkeep
 
 # Editor directories and files
 .vscode/*
