@@ -91,19 +91,27 @@ class ImageService:
         self,
         image: Image.Image,
         filename: str = "unknown",
+        invert_if_light_background: bool = False,
     ) -> np.ndarray:
         """
         Preprocess an image for model prediction.
 
         Steps:
         1. Convert to grayscale
-        2. Resize to target size
-        3. Normalize pixel values (0-1)
-        4. Add batch dimension
+        2. Invert colors if needed (for canvas-drawn images with light background)
+        3. Resize to target size
+        4. Normalize pixel values (0-1)
+        5. Add batch dimension
+
+        The model is trained on images with dark/black background and light/white
+        characters. Canvas-drawn images typically have white background with black
+        characters, so they need to be inverted to match the training data format.
 
         Args:
             image: PIL Image object
             filename: Filename for logging purposes
+            invert_if_light_background: If True, automatically invert colors when
+                background is light (for canvas-drawn images)
 
         Returns:
             Preprocessed numpy array ready for prediction
@@ -119,6 +127,26 @@ class ImageService:
             if image.mode != "L":
                 image = image.convert("L")
                 logger.debug("Converted image to grayscale")
+
+            # Check if we need to invert colors (canvas images have white background)
+            if invert_if_light_background:
+                img_array_check = np.array(image)
+                # Check corner pixels to determine background color
+                corners = [
+                    img_array_check[0, 0],
+                    img_array_check[0, -1],
+                    img_array_check[-1, 0],
+                    img_array_check[-1, -1],
+                ]
+                mean_background = np.mean(corners)
+                logger.debug(f"Mean background (corners): {mean_background:.2f}")
+
+                # If background is light (> 128), invert the image
+                # Training data has dark background (~0) with light characters (~255)
+                if mean_background > 128:
+                    from PIL import ImageOps
+                    image = ImageOps.invert(image)
+                    logger.info("Inverted image colors to match training data format (dark background)")
 
             # Resize to target size
             image = image.resize(self.target_size, Image.Resampling.LANCZOS)
@@ -157,6 +185,10 @@ class ImageService:
         """
         Process an uploaded file for prediction.
 
+        Uploaded images may have either dark or light backgrounds. This method
+        automatically detects and inverts colors when necessary to match the
+        training data format (dark background with light characters).
+
         Args:
             file_content: Raw file content bytes
             filename: Name of the uploaded file
@@ -174,7 +206,8 @@ class ImageService:
             image = Image.open(io.BytesIO(file_content))
             logger.debug(f"Opened image: {image.format}, {image.size}, {image.mode}")
 
-            return self.preprocess_image(image, filename)
+            # Enable auto-inversion for uploaded files too
+            return self.preprocess_image(image, filename, invert_if_light_background=True)
 
         except Exception as e:
             if isinstance(e, (ImageProcessingError,)):
@@ -189,6 +222,10 @@ class ImageService:
         """
         Process a base64 encoded image for prediction.
 
+        Canvas-drawn images typically have white background with black characters,
+        but the model is trained on images with dark background and light characters.
+        This method automatically inverts colors when necessary.
+
         Args:
             base64_string: Base64 encoded image string
 
@@ -198,11 +235,12 @@ class ImageService:
         Raises:
             InvalidImageError: If base64 string is invalid
         """
-        logger.info("Processing base64 encoded image")
+        logger.info("Processing base64 encoded image (canvas drawing)")
 
         try:
             image = base64_to_image(base64_string)
-            return self.preprocess_image(image, "canvas_image")
+            # Canvas images need color inversion to match training data format
+            return self.preprocess_image(image, "canvas_image", invert_if_light_background=True)
 
         except Exception as e:
             if isinstance(e, (ImageProcessingError,)):
