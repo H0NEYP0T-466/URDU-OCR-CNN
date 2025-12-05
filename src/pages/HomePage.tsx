@@ -1,28 +1,34 @@
 /**
  * Home Page
  * 
- * Main page with image upload and drawing canvas for character prediction.
+ * Main page with image upload and drawing canvas for character and digit prediction.
  */
 
 import { useState } from 'react';
 import ImageUploader from '../components/ImageUploader';
 import DrawingCanvas from '../components/DrawingCanvas';
 import PredictionResult from '../components/PredictionResult';
-import { usePrediction } from '../hooks/usePrediction';
+import { usePrediction, ModelType } from '../hooks/usePrediction';
 import './HomePage.css';
 
 type InputMode = 'upload' | 'draw';
 
 const HomePage: React.FC = () => {
   const [inputMode, setInputMode] = useState<InputMode>('upload');
+  const [modelType, setModelType] = useState<ModelType>('character');
   const { state, predictImage, predictCanvas, reset } = usePrediction();
 
   const handleImageSelect = (file: File) => {
-    predictImage(file);
+    predictImage(file, modelType);
   };
 
   const handleCanvasSubmit = (imageData: string) => {
-    predictCanvas(imageData);
+    predictCanvas(imageData, modelType);
+  };
+
+  const handleModelTypeChange = (newModelType: ModelType) => {
+    setModelType(newModelType);
+    reset(); // Reset prediction when model type changes
   };
 
   return (
@@ -30,12 +36,35 @@ const HomePage: React.FC = () => {
       {/* Hero Section */}
       <div className="home-hero">
         <h1 className="home-hero-title">
-          Urdu Character Recognition
+          Urdu {modelType === 'character' ? 'Character' : 'Digit'} Recognition
         </h1>
         <p className="home-hero-text">
-          Upload an image or draw a handwritten Urdu character, and our AI will recognize it using
+          Upload an image or draw a handwritten Urdu {modelType === 'character' ? 'character' : 'digit'}, and our AI will recognize it using
           deep learning technology.
         </p>
+      </div>
+
+      {/* Model Type Selector */}
+      <div className="home-model-selector">
+        <span className="home-model-label">Select Model:</span>
+        <div className="home-model-buttons">
+          <button
+            onClick={() => handleModelTypeChange('character')}
+            className={`home-model-button ${
+              modelType === 'character' ? 'active' : ''
+            }`}
+          >
+            Character Recognition
+          </button>
+          <button
+            onClick={() => handleModelTypeChange('digit')}
+            className={`home-model-button ${
+              modelType === 'digit' ? 'active' : ''
+            }`}
+          >
+            Digit Recognition
+          </button>
+        </div>
       </div>
 
       {/* Mode Selector */}
@@ -55,7 +84,7 @@ const HomePage: React.FC = () => {
               inputMode === 'draw' ? 'active' : ''
             }`}
           >
-            Draw Character
+            Draw {modelType === 'character' ? 'Character' : 'Digit'}
           </button>
         </div>
       </div>
@@ -65,7 +94,7 @@ const HomePage: React.FC = () => {
         {/* Input Section */}
         <div className="home-input-section">
           <h2 className="home-section-title">
-            {inputMode === 'upload' ? 'Upload Image' : 'Draw Character'}
+            {inputMode === 'upload' ? 'Upload Image' : `Draw ${modelType === 'character' ? 'Character' : 'Digit'}`}
           </h2>
           
           {inputMode === 'upload' ? (
@@ -77,6 +106,8 @@ const HomePage: React.FC = () => {
             <DrawingCanvas
               onSubmit={handleCanvasSubmit}
               isLoading={state.isLoading}
+              instructionText={modelType === 'character' ? 'Draw an Urdu character here' : 'Draw an Urdu digit here (۰-۹)'}
+              submitButtonText={modelType === 'character' ? 'Predict Character' : 'Predict Digit'}
             />
           )}
         </div>
@@ -103,7 +134,7 @@ const HomePage: React.FC = () => {
           </div>
           <h3 className="home-feature-title">AI-Powered</h3>
           <p className="home-feature-text">
-            Uses deep learning CNN to accurately recognize handwritten Urdu characters.
+            Uses deep learning CNN to accurately recognize handwritten Urdu characters and digits.
           </p>
         </div>
 
@@ -125,7 +156,7 @@ const HomePage: React.FC = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
             </svg>
           </div>
-          <h3 className="home-feature-title">46+ Characters</h3>
+          <h3 className="home-feature-title">46+ Characters & 10 Digits</h3>
           <p className="home-feature-text">
             Supports all Urdu alphabets and digits for comprehensive recognition.
           </p>

@@ -25,6 +25,10 @@ class Settings(BaseSettings):
     # Model settings
     MODEL_PATH: str = "saved_models/urdu_cnn_model.h5"
     CLASS_LABELS_PATH: str = "saved_models/class_labels.json"
+    
+    # Digit model settings
+    DIGIT_MODEL_PATH: str = "saved_models/urdu_digit_cnn_model.h5"
+    DIGIT_CLASS_LABELS_PATH: str = "saved_models/digit_class_labels.json"
 
     # File upload settings
     MAX_FILE_SIZE: int = 5 * 1024 * 1024  # 5MB
@@ -61,6 +65,16 @@ class Settings(BaseSettings):
     def class_labels_path_resolved(self) -> Path:
         """Get the resolved class labels path."""
         return Path(__file__).parent.parent / self.CLASS_LABELS_PATH
+
+    @property
+    def digit_model_path_resolved(self) -> Path:
+        """Get the resolved digit model path."""
+        return Path(__file__).parent.parent / self.DIGIT_MODEL_PATH
+
+    @property
+    def digit_class_labels_path_resolved(self) -> Path:
+        """Get the resolved digit class labels path."""
+        return Path(__file__).parent.parent / self.DIGIT_CLASS_LABELS_PATH
 
     @property
     def log_file_resolved(self) -> Path:
