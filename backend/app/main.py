@@ -17,6 +17,7 @@ from app.config import get_settings
 from app.core.exceptions import UrduOCRException
 from app.logger import get_logger, setup_logger
 from app.services.model_service import get_model_service
+from app.services.digit_model_service import get_digit_model_service
 
 # Initialize settings
 settings = get_settings()
@@ -46,27 +47,49 @@ async def lifespan(app: FastAPI):
     logger.info("Starting Urdu Character Recognition API Server...")
     logger.info("Loading configuration...")
 
-    # Initialize model service
-    logger.info("Initializing model service...")
+    # Initialize character model service
+    logger.info("Initializing character model service...")
     model_service = get_model_service()
 
     try:
         model_path = settings.model_path_resolved
-        logger.info(f"Attempting to load model from: {model_path}")
+        logger.info(f"Attempting to load character model from: {model_path}")
 
         if model_path.exists():
             model_service.load_model(str(model_path))
-            logger.info(f"Model loaded successfully from {model_path}")
+            logger.info(f"Character model loaded successfully from {model_path}")
             logger.info(f"Model input shape: {model_service.model.input_shape}")
             logger.info(f"Number of classes: {model_service.num_classes}")
         else:
-            logger.warning(f"Model file not found at: {model_path}")
-            logger.info("Running in demo mode without trained model")
-            logger.info("To train a model, run: python -m ml.train")
+            logger.warning(f"Character model file not found at: {model_path}")
+            logger.info("Running in demo mode without trained character model")
+            logger.info("To train a character model, run: python -m ml.train")
 
     except Exception as e:
-        logger.warning(f"Could not load model: {str(e)}")
-        logger.info("Running in demo mode without trained model")
+        logger.warning(f"Could not load character model: {str(e)}")
+        logger.info("Running in demo mode without trained character model")
+
+    # Initialize digit model service
+    logger.info("Initializing digit model service...")
+    digit_model_service = get_digit_model_service()
+
+    try:
+        digit_model_path = settings.digit_model_path_resolved
+        logger.info(f"Attempting to load digit model from: {digit_model_path}")
+
+        if digit_model_path.exists():
+            digit_model_service.load_model(str(digit_model_path))
+            logger.info(f"Digit model loaded successfully from {digit_model_path}")
+            logger.info(f"Model input shape: {digit_model_service.model.input_shape}")
+            logger.info(f"Number of classes: {digit_model_service.num_classes}")
+        else:
+            logger.warning(f"Digit model file not found at: {digit_model_path}")
+            logger.info("Running in demo mode without trained digit model")
+            logger.info("To train a digit model, run: python -m ml.digit_cnn.train")
+
+    except Exception as e:
+        logger.warning(f"Could not load digit model: {str(e)}")
+        logger.info("Running in demo mode without trained digit model")
 
     logger.info("Server ready to accept requests")
     logger.info(f"API documentation available at: http://{settings.HOST}:{settings.PORT}/docs")
@@ -77,8 +100,9 @@ async def lifespan(app: FastAPI):
     logger.info("Shutting down server...")
     logger.info("Cleaning up resources...")
 
-    # Unload model to free memory
+    # Unload models to free memory
     model_service.unload_model()
+    digit_model_service.unload_model()
 
     logger.info("Server shutdown complete")
 

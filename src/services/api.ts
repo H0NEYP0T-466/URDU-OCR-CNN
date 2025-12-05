@@ -83,6 +83,39 @@ export const predictFromCanvas = async (imageData: string): Promise<PredictionRe
 };
 
 /**
+ * Predict digit from uploaded image file
+ */
+export const predictDigitFromImage = async (file: File): Promise<PredictionResponse> => {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await api.post<PredictionResponse>('/api/v1/predict/digit', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
+};
+
+/**
+ * Predict digit from canvas drawing (base64 encoded)
+ */
+export const predictDigitFromCanvas = async (imageData: string): Promise<PredictionResponse> => {
+  try {
+    const response = await api.post<PredictionResponse>('/api/v1/predict/digit/canvas', {
+      image_data: imageData,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
+};
+
+/**
  * Check API health status
  */
 export const healthCheck = async (): Promise<HealthResponse> => {
@@ -100,6 +133,18 @@ export const healthCheck = async (): Promise<HealthResponse> => {
 export const getClasses = async (): Promise<string[]> => {
   try {
     const response = await api.get<ClassesResponse>('/api/v1/classes');
+    return response.data.classes;
+  } catch (error) {
+    throw new Error(handleApiError(error));
+  }
+};
+
+/**
+ * Get list of supported digit classes
+ */
+export const getDigitClasses = async (): Promise<string[]> => {
+  try {
+    const response = await api.get<ClassesResponse>('/api/v1/classes/digits');
     return response.data.classes;
   } catch (error) {
     throw new Error(handleApiError(error));

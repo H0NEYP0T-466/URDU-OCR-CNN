@@ -59,6 +59,8 @@ export interface DrawingCanvasProps {
   onSubmit: (imageData: string) => void;
   isLoading?: boolean;
   disabled?: boolean;
+  instructionText?: string;
+  submitButtonText?: string;
 }
 
 export interface HeaderProps {

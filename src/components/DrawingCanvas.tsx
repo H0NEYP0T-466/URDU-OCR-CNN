@@ -12,6 +12,8 @@ const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
   onSubmit,
   isLoading = false,
   disabled = false,
+  instructionText = 'Draw an Urdu character here',
+  submitButtonText = 'Predict Character',
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -149,7 +151,7 @@ const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
         {/* Instructions overlay */}
         {!hasContent && (
           <div className="drawing-canvas-overlay">
-            <p>Draw an Urdu character here</p>
+            <p>{instructionText}</p>
           </div>
         )}
       </div>
@@ -182,7 +184,7 @@ const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
           className="btn-primary"
           disabled={isLoading || !hasContent}
         >
-          {isLoading ? 'Processing...' : 'Predict Character'}
+          {isLoading ? 'Processing...' : submitButtonText}
         </button>
       </div>
     </div>
