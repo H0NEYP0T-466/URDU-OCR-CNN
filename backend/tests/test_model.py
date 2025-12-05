@@ -123,3 +123,89 @@ class TestImageService:
         assert result.dtype == np.float32
         assert result.min() >= 0
         assert result.max() <= 1
+
+    def test_preprocess_canvas_image_inverts_colors(self):
+        """
+        Test that canvas images with light backgrounds are inverted.
+        
+        Canvas drawings typically have:
+        - White background (255)
+        - Black strokes (0)
+        
+        The model expects:
+        - Dark background (~0)
+        - Light strokes (~255)
+        
+        So the preprocessing should invert the colors.
+        """
+        from PIL import Image, ImageDraw
+
+        from app.services.image_service import get_image_service
+
+        service = get_image_service()
+
+        # Create canvas-like image: white background with black stroke
+        img = Image.new("L", (64, 64), color=255)  # White background
+        draw = ImageDraw.Draw(img)
+        draw.ellipse((20, 20, 44, 44), fill=0)  # Black circle
+
+        # Get original pixel values
+        original_bg = np.array(img)[0, 0]  # Corner (background) = 255
+        original_stroke = np.array(img)[32, 32]  # Center (stroke) = 0
+
+        # Process with inversion enabled (like canvas processing does)
+        result = service.preprocess_image(img, "canvas.png", invert_if_light_background=True)
+
+        # After inversion:
+        # - Background should be dark (close to 0)
+        # - Stroke should be light (close to 1, normalized)
+        result_bg = result[0, 0, 0, 0]  # Corner (background) 
+        result_stroke = result[0, 32, 32, 0]  # Center (stroke)
+
+        # Background was white (255), after inversion should be 0
+        assert result_bg == 0.0, f"Background should be 0 after inversion, got {result_bg}"
+        # Stroke was black (0), after inversion should be ~1 (normalized)
+        assert result_stroke == 1.0, f"Stroke should be 1 after inversion, got {result_stroke}"
+
+    def test_base64_canvas_image_processing(self):
+        """
+        Test that base64 canvas images are processed correctly with inversion.
+        
+        This simulates the actual flow when a user draws on the canvas
+        and the image is sent as base64 to the API.
+        """
+        import base64
+        import io
+        from PIL import Image, ImageDraw
+
+        from app.services.image_service import get_image_service
+
+        service = get_image_service()
+
+        # Create canvas-like image: white background with black stroke
+        img = Image.new("RGB", (64, 64), color=(255, 255, 255))
+        draw = ImageDraw.Draw(img)
+        draw.ellipse((20, 20, 44, 44), fill=(0, 0, 0))
+
+        # Convert to base64 (simulating canvas.toDataURL())
+        buffer = io.BytesIO()
+        img.save(buffer, format="PNG")
+        buffer.seek(0)
+        base64_data = f"data:image/png;base64,{base64.b64encode(buffer.getvalue()).decode('utf-8')}"
+
+        # Process using the same method as the API endpoint
+        result = service.process_base64_image(base64_data)
+
+        # Verify shape and range
+        assert result.shape == (1, 64, 64, 1)
+        assert result.dtype == np.float32
+        assert result.min() >= 0
+        assert result.max() <= 1
+
+        # Verify inversion happened correctly
+        result_bg = result[0, 0, 0, 0]  # Corner (background)
+        result_stroke = result[0, 32, 32, 0]  # Center (stroke)
+
+        # After inversion: background=0, stroke=1
+        assert result_bg == 0.0, f"Background should be 0 after inversion, got {result_bg}"
+        assert result_stroke == 1.0, f"Stroke should be 1 after inversion, got {result_stroke}"
