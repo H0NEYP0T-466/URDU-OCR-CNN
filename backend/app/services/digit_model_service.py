@@ -13,7 +13,7 @@ from typing import Dict, List, Optional, Tuple, Any
 
 import numpy as np
 
-from app.config import FOLDER_TO_DIGIT, get_settings
+from app.config import get_settings
 from app.core.exceptions import (
     ClassLabelsNotFoundError,
     ModelLoadError,

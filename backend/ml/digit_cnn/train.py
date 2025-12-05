@@ -19,7 +19,6 @@ from tensorflow.keras.utils import to_categorical
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from app.config import FOLDER_TO_DIGIT
 from app.logger import setup_logger
 from app.models.cnn_model import compile_model, create_cnn_model, get_callbacks
 from ml.augmentation import create_data_generator
