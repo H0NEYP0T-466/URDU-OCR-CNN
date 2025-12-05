@@ -1,0 +1,404 @@
+
+X:\file\FAST_API\Urdu-OCR-CNN\backend>venv312\Scripts\activate
+
+(venv312) X:\file\FAST_API\Urdu-OCR-CNN\backend>python -m ml.digit_cnn.train
+2025-12-05 17:27:11.587664: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-12-05 17:27:21.669604: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[2025-12-05 17:27:33] [INFO] [train.py:77] - ============================================================
+[2025-12-05 17:27:33] [INFO] [train.py:78] - URDU DIGIT RECOGNITION MODEL TRAINING
+[2025-12-05 17:27:33] [INFO] [train.py:79] - ============================================================
+[2025-12-05 17:27:33] [INFO] [train.py:82] - Training started at: 2025-12-05 17:27:33
+[2025-12-05 17:27:33] [INFO] [train.py:85] - Training Configuration:
+[2025-12-05 17:27:33] [INFO] [train.py:86] -   Data directory: data/raw
+[2025-12-05 17:27:33] [INFO] [train.py:87] -   Processed directory: data/processed/digits
+[2025-12-05 17:27:33] [INFO] [train.py:88] -   Model save path: saved_models/urdu_digit_cnn_model.h5
+[2025-12-05 17:27:33] [INFO] [train.py:89] -   Image size: 64x64
+[2025-12-05 17:27:33] [INFO] [train.py:90] -   Batch size: 32
+[2025-12-05 17:27:33] [INFO] [train.py:91] -   Max epochs: 100
+[2025-12-05 17:27:33] [INFO] [train.py:92] -   Learning rate: 0.001
+[2025-12-05 17:27:33] [INFO] [train.py:93] -   Use augmentation: True
+[2025-12-05 17:27:33] [INFO] [train.py:117] - Loading and preprocessing raw data...
+[2025-12-05 17:27:33] [INFO] [preprocess.py:320] - Dataset structure check:
+[2025-12-05 17:27:33] [INFO] [preprocess.py:323] -   ✓ characters_train
+[2025-12-05 17:27:33] [INFO] [preprocess.py:323] -   ✓ characters_test
+[2025-12-05 17:27:33] [INFO] [preprocess.py:323] -   ✓ digits_train
+[2025-12-05 17:27:33] [INFO] [preprocess.py:323] -   ✓ digits_test
+[2025-12-05 17:27:33] [INFO] [train.py:128] - Using split dataset: digits
+[2025-12-05 17:27:33] [INFO] [preprocess.py:237] - ============================================================
+[2025-12-05 17:27:33] [INFO] [preprocess.py:238] - Loading split dataset
+[2025-12-05 17:27:33] [INFO] [preprocess.py:239] - Train directory: data\raw\digits_train_set
+[2025-12-05 17:27:33] [INFO] [preprocess.py:240] - Test directory: data\raw\digits_test_set
+[2025-12-05 17:27:33] [INFO] [preprocess.py:241] - ============================================================
+[2025-12-05 17:27:33] [INFO] [preprocess.py:68] - Loading dataset from: data\raw\digits_train_set
+[2025-12-05 17:27:33] [INFO] [preprocess.py:81] - Found 10 classes
+[2025-12-05 17:27:33] [INFO] [preprocess.py:86] - Processing class 0: 0
+[2025-12-05 17:27:33] [INFO] [preprocess.py:91] -   Found 520 images
+[2025-12-05 17:27:38] [INFO] [preprocess.py:86] - Processing class 1: 1
+[2025-12-05 17:27:38] [INFO] [preprocess.py:91] -   Found 678 images
+[2025-12-05 17:27:45] [INFO] [preprocess.py:86] - Processing class 2: 2
+[2025-12-05 17:27:45] [INFO] [preprocess.py:91] -   Found 668 images
+[2025-12-05 17:27:52] [INFO] [preprocess.py:86] - Processing class 3: 3
+[2025-12-05 17:27:52] [INFO] [preprocess.py:91] -   Found 665 images
+[2025-12-05 17:27:58] [INFO] [preprocess.py:86] - Processing class 4: 4
+[2025-12-05 17:27:58] [INFO] [preprocess.py:91] -   Found 670 images
+[2025-12-05 17:28:05] [INFO] [preprocess.py:86] - Processing class 5: 5
+[2025-12-05 17:28:05] [INFO] [preprocess.py:91] -   Found 688 images
+[2025-12-05 17:28:13] [INFO] [preprocess.py:86] - Processing class 6: 6
+[2025-12-05 17:28:13] [INFO] [preprocess.py:91] -   Found 674 images
+[2025-12-05 17:28:21] [INFO] [preprocess.py:86] - Processing class 7: 7
+[2025-12-05 17:28:21] [INFO] [preprocess.py:91] -   Found 678 images
+[2025-12-05 17:28:29] [INFO] [preprocess.py:86] - Processing class 8: 8
+[2025-12-05 17:28:29] [INFO] [preprocess.py:91] -   Found 682 images
+[2025-12-05 17:28:35] [INFO] [preprocess.py:86] - Processing class 9: 9
+[2025-12-05 17:28:35] [INFO] [preprocess.py:91] -   Found 683 images
+[2025-12-05 17:28:42] [INFO] [preprocess.py:117] - Dataset loaded: 6606 images, 10 classes
+[2025-12-05 17:28:42] [INFO] [preprocess.py:118] - Image shape: (6606, 64, 64)
+[2025-12-05 17:28:42] [INFO] [preprocess.py:141] - Loading dataset from: data\raw\digits_test_set with existing class mapping
+[2025-12-05 17:28:42] [INFO] [preprocess.py:156] - Found 10 classes in test set
+[2025-12-05 17:28:42] [INFO] [preprocess.py:165] - Processing class 0: 0
+[2025-12-05 17:28:42] [INFO] [preprocess.py:170] -   Found 111 images
+[2025-12-05 17:28:43] [INFO] [preprocess.py:165] - Processing class 1: 1
+[2025-12-05 17:28:43] [INFO] [preprocess.py:170] -   Found 146 images
+[2025-12-05 17:28:44] [INFO] [preprocess.py:165] - Processing class 2: 2
+[2025-12-05 17:28:44] [INFO] [preprocess.py:170] -   Found 144 images
+[2025-12-05 17:28:45] [INFO] [preprocess.py:165] - Processing class 3: 3
+[2025-12-05 17:28:45] [INFO] [preprocess.py:170] -   Found 141 images
+[2025-12-05 17:28:47] [INFO] [preprocess.py:165] - Processing class 4: 4
+[2025-12-05 17:28:47] [INFO] [preprocess.py:170] -   Found 144 images
+[2025-12-05 17:28:48] [INFO] [preprocess.py:165] - Processing class 5: 5
+[2025-12-05 17:28:48] [INFO] [preprocess.py:170] -   Found 148 images
+[2025-12-05 17:28:49] [INFO] [preprocess.py:165] - Processing class 6: 6
+[2025-12-05 17:28:49] [INFO] [preprocess.py:170] -   Found 145 images
+[2025-12-05 17:28:50] [INFO] [preprocess.py:165] - Processing class 7: 7
+[2025-12-05 17:28:50] [INFO] [preprocess.py:170] -   Found 146 images
+[2025-12-05 17:28:51] [INFO] [preprocess.py:165] - Processing class 8: 8
+[2025-12-05 17:28:51] [INFO] [preprocess.py:170] -   Found 142 images
+[2025-12-05 17:28:52] [INFO] [preprocess.py:165] - Processing class 9: 9
+[2025-12-05 17:28:52] [INFO] [preprocess.py:170] -   Found 147 images
+[2025-12-05 17:28:54] [INFO] [preprocess.py:196] - Dataset loaded: 1414 images
+[2025-12-05 17:28:54] [INFO] [preprocess.py:197] - Image shape: (1414, 64, 64)
+[2025-12-05 17:28:54] [INFO] [preprocess.py:342] - Preprocessing images...
+[2025-12-05 17:28:54] [INFO] [preprocess.py:343] - Input shape: (6606, 64, 64)
+[2025-12-05 17:28:54] [INFO] [preprocess.py:347] - Normalized pixel values to [0, 1]
+[2025-12-05 17:28:54] [INFO] [preprocess.py:351] - Output shape: (6606, 64, 64, 1)
+[2025-12-05 17:28:54] [INFO] [preprocess.py:342] - Preprocessing images...
+[2025-12-05 17:28:54] [INFO] [preprocess.py:343] - Input shape: (1414, 64, 64)
+[2025-12-05 17:28:54] [INFO] [preprocess.py:347] - Normalized pixel values to [0, 1]
+[2025-12-05 17:28:54] [INFO] [preprocess.py:351] - Output shape: (1414, 64, 64, 1)
+[2025-12-05 17:28:54] [INFO] [preprocess.py:269] - Train set: 5615 samples
+[2025-12-05 17:28:54] [INFO] [preprocess.py:270] - Validation set: 991 samples
+[2025-12-05 17:28:54] [INFO] [preprocess.py:271] - Test set: 1414 samples
+[2025-12-05 17:28:54] [INFO] [preprocess.py:441] - Saving processed data to: data/processed/digits
+[2025-12-05 17:28:54] [INFO] [preprocess.py:453] - Processed data saved successfully
+[2025-12-05 17:28:54] [INFO] [preprocess.py:413] - Saving class mapping to: saved_models/digit_class_labels.json
+[2025-12-05 17:28:54] [INFO] [preprocess.py:421] - Saved 10 class labels
+[2025-12-05 17:28:54] [INFO] [preprocess.py:413] - Saving class mapping to: data\processed\digits\class_labels.json
+[2025-12-05 17:28:54] [INFO] [preprocess.py:421] - Saved 10 class labels
+[2025-12-05 17:28:54] [INFO] [train.py:185] - Number of classes: 10
+[2025-12-05 17:28:54] [INFO] [train.py:192] - Training set: 5615 samples
+[2025-12-05 17:28:54] [INFO] [train.py:193] - Validation set: 991 samples
+[2025-12-05 17:28:54] [INFO] [train.py:194] - Test set: 1414 samples
+[2025-12-05 17:28:54] [INFO] [train.py:197] - Creating CNN model for digit recognition...
+[2025-12-05 17:28:54] [INFO] [cnn_model.py:43] - Creating CNN model with input shape: (64, 64, 1)
+[2025-12-05 17:28:54] [INFO] [cnn_model.py:44] - Number of output classes: 10
+2025-12-05 17:28:54.584727: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[2025-12-05 17:28:54] [INFO] [cnn_model.py:96] - CNN model created successfully
+[2025-12-05 17:28:54] [INFO] [cnn_model.py:97] - Model architecture summary:
+[2025-12-05 17:28:54] [INFO] [cnn_model.py:100] - Model: "urdu_cnn_model"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)             │ (None, 64, 64, 1)           │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv1 (Conv2D)                       │ (None, 64, 64, 32)          │             320 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bn1 (BatchNormalization)             │ (None, 64, 64, 32)          │             128 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ relu1 (Activation)                   │ (None, 64, 64, 32)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ pool1 (MaxPooling2D)                 │ (None, 32, 32, 32)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout1 (Dropout)                   │ (None, 32, 32, 32)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2 (Conv2D)                       │ (None, 32, 32, 64)          │          18,496 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bn2 (BatchNormalization)             │ (None, 32, 32, 64)          │             256 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ relu2 (Activation)                   │ (None, 32, 32, 64)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ pool2 (MaxPooling2D)                 │ (None, 16, 16, 64)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout2 (Dropout)                   │ (None, 16, 16, 64)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv3 (Conv2D)                       │ (None, 16, 16, 128)         │          73,856 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bn3 (BatchNormalization)             │ (None, 16, 16, 128)         │             512 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ relu3 (Activation)                   │ (None, 16, 16, 128)         │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ pool3 (MaxPooling2D)                 │ (None, 8, 8, 128)           │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout3 (Dropout)                   │ (None, 8, 8, 128)           │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv4 (Conv2D)                       │ (None, 8, 8, 256)           │         295,168 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bn4 (BatchNormalization)             │ (None, 8, 8, 256)           │           1,024 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ relu4 (Activation)                   │ (None, 8, 8, 256)           │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ pool4 (MaxPooling2D)                 │ (None, 4, 4, 256)           │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout4 (Dropout)                   │ (None, 4, 4, 256)           │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ flatten (Flatten)                    │ (None, 4096)                │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense1 (Dense)                       │ (None, 512)                 │       2,097,664 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bn_dense1 (BatchNormalization)       │ (None, 512)                 │           2,048 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ relu_dense1 (Activation)             │ (None, 512)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_dense1 (Dropout)             │ (None, 512)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense2 (Dense)                       │ (None, 256)                 │         131,328 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bn_dense2 (BatchNormalization)       │ (None, 256)                 │           1,024 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ relu_dense2 (Activation)             │ (None, 256)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_dense2 (Dropout)             │ (None, 256)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ output (Dense)                       │ (None, 10)                  │           2,570 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 2,624,394 (10.01 MB)
+ Trainable params: 2,621,898 (10.00 MB)
+ Non-trainable params: 2,496 (9.75 KB)
+
+[2025-12-05 17:28:54] [INFO] [cnn_model.py:119] - Compiling model with learning rate: 0.001
+[2025-12-05 17:28:54] [INFO] [cnn_model.py:129] - Model compiled successfully
+[2025-12-05 17:28:54] [INFO] [cnn_model.py:151] - Setting up training callbacks
+[2025-12-05 17:28:54] [INFO] [cnn_model.py:183] - Callbacks configured: EarlyStopping, ModelCheckpoint, ReduceLROnPlateau, TensorBoard
+[2025-12-05 17:28:54] [INFO] [train.py:213] - Starting model training...
+[2025-12-05 17:28:54] [INFO] [train.py:214] - ----------------------------------------
+[2025-12-05 17:28:54] [INFO] [augmentation.py:47] - Creating data generator with augmentation settings:
+[2025-12-05 17:28:54] [INFO] [augmentation.py:48] -   rotation_range: 15
+[2025-12-05 17:28:54] [INFO] [augmentation.py:49] -   width_shift_range: 0.1
+[2025-12-05 17:28:54] [INFO] [augmentation.py:50] -   height_shift_range: 0.1
+[2025-12-05 17:28:54] [INFO] [augmentation.py:51] -   zoom_range: 0.1
+[2025-12-05 17:28:54] [INFO] [augmentation.py:52] -   shear_range: 0.1
+[2025-12-05 17:28:54] [INFO] [augmentation.py:53] -   horizontal_flip: False
+[2025-12-05 17:28:54] [INFO] [augmentation.py:54] -   vertical_flip: False
+[2025-12-05 17:28:54] [INFO] [augmentation.py:67] - Data generator created successfully
+Epoch 1/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 233ms/step - accuracy: 0.5667 - loss: 1.2418
+Epoch 1: val_accuracy improved from None to 0.07871, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 49s 248ms/step - accuracy: 0.6905 - loss: 0.8452 - val_accuracy: 0.0787 - val_loss: 7.9434 - learning_rate: 0.0010
+Epoch 2/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 43s 249ms/step - accuracy: 0.7812 - loss: 0.7962X:\file\FAST_API\Urdu-OCR-CNN\backend\venv312\Lib\site-packages\keras\src\trainers\epoch_iterator.py:116: UserWarning: Your input ran out of data; interrupting training. Make sure that your dataset or generator can generate at least `steps_per_epoch * epochs` batches. You may need to use the `.repeat()` function when building your dataset.
+  self._interrupted_warning()
+
+Epoch 2: val_accuracy did not improve from 0.07871
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 12ms/step - accuracy: 0.7812 - loss: 0.7962 - val_accuracy: 0.0787 - val_loss: 7.9572 - learning_rate: 0.0010
+Epoch 3/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 228ms/step - accuracy: 0.8345 - loss: 0.4661
+Epoch 3: val_accuracy improved from 0.07871 to 0.08880, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 42s 240ms/step - accuracy: 0.8551 - loss: 0.4237 - val_accuracy: 0.0888 - val_loss: 8.7348 - learning_rate: 0.0010
+Epoch 4/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 39s 225ms/step - accuracy: 0.8750 - loss: 0.2942
+Epoch 4: val_accuracy improved from 0.08880 to 0.09082, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 13ms/step - accuracy: 0.8750 - loss: 0.2942 - val_accuracy: 0.0908 - val_loss: 8.6694 - learning_rate: 0.0010
+Epoch 5/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 227ms/step - accuracy: 0.8856 - loss: 0.3643
+Epoch 5: val_accuracy improved from 0.09082 to 0.12412, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 42s 239ms/step - accuracy: 0.8979 - loss: 0.3196 - val_accuracy: 0.1241 - val_loss: 5.0304 - learning_rate: 0.0010
+Epoch 6/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 39s 227ms/step - accuracy: 0.8750 - loss: 0.2307
+Epoch 6: val_accuracy improved from 0.12412 to 0.12714, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 13ms/step - accuracy: 0.8750 - loss: 0.2307 - val_accuracy: 0.1271 - val_loss: 5.0063 - learning_rate: 0.0010
+Epoch 7/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 227ms/step - accuracy: 0.9135 - loss: 0.2788
+Epoch 7: val_accuracy improved from 0.12714 to 0.88900, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 42s 239ms/step - accuracy: 0.9137 - loss: 0.2747 - val_accuracy: 0.8890 - val_loss: 0.3364 - learning_rate: 0.0010
+Epoch 8/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 39s 225ms/step - accuracy: 0.9375 - loss: 0.1813
+Epoch 8: val_accuracy did not improve from 0.88900
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 11ms/step - accuracy: 0.9375 - loss: 0.1813 - val_accuracy: 0.8840 - val_loss: 0.3415 - learning_rate: 0.0010
+Epoch 9/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 231ms/step - accuracy: 0.9232 - loss: 0.2462
+Epoch 9: val_accuracy improved from 0.88900 to 0.97376, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 43s 245ms/step - accuracy: 0.9248 - loss: 0.2424 - val_accuracy: 0.9738 - val_loss: 0.0921 - learning_rate: 0.0010
+Epoch 10/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 40s 230ms/step - accuracy: 0.9375 - loss: 0.2758
+Epoch 10: val_accuracy did not improve from 0.97376
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 13ms/step - accuracy: 0.9375 - loss: 0.2758 - val_accuracy: 0.9717 - val_loss: 0.0910 - learning_rate: 0.0010
+Epoch 11/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 230ms/step - accuracy: 0.9247 - loss: 0.2281
+Epoch 11: val_accuracy did not improve from 0.97376
+175/175 ━━━━━━━━━━━━━━━━━━━━ 42s 242ms/step - accuracy: 0.9282 - loss: 0.2205 - val_accuracy: 0.9627 - val_loss: 0.1305 - learning_rate: 0.0010
+Epoch 12/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 41s 238ms/step - accuracy: 0.9688 - loss: 0.0625
+Epoch 12: val_accuracy did not improve from 0.97376
+175/175 ━━━━━━━━━━━━━━━━━━━━ 3s 14ms/step - accuracy: 0.9688 - loss: 0.0625 - val_accuracy: 0.9637 - val_loss: 0.1310 - learning_rate: 0.0010
+Epoch 13/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 233ms/step - accuracy: 0.9411 - loss: 0.1984
+Epoch 13: val_accuracy improved from 0.97376 to 0.97780, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 43s 246ms/step - accuracy: 0.9396 - loss: 0.1989 - val_accuracy: 0.9778 - val_loss: 0.0810 - learning_rate: 0.0010
+Epoch 14/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 40s 235ms/step - accuracy: 0.9375 - loss: 0.1688
+Epoch 14: val_accuracy improved from 0.97780 to 0.97881, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 13ms/step - accuracy: 0.9375 - loss: 0.1688 - val_accuracy: 0.9788 - val_loss: 0.0781 - learning_rate: 0.0010
+Epoch 15/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 238ms/step - accuracy: 0.9423 - loss: 0.1746
+Epoch 15: val_accuracy did not improve from 0.97881
+175/175 ━━━━━━━━━━━━━━━━━━━━ 44s 250ms/step - accuracy: 0.9398 - loss: 0.1800 - val_accuracy: 0.9758 - val_loss: 0.0740 - learning_rate: 0.0010
+Epoch 16/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 40s 235ms/step - accuracy: 0.8750 - loss: 0.1964
+Epoch 16: val_accuracy did not improve from 0.97881
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 11ms/step - accuracy: 0.8750 - loss: 0.1964 - val_accuracy: 0.9758 - val_loss: 0.0761 - learning_rate: 0.0010
+Epoch 17/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 229ms/step - accuracy: 0.9454 - loss: 0.1762
+Epoch 17: val_accuracy improved from 0.97881 to 0.97982, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 42s 242ms/step - accuracy: 0.9450 - loss: 0.1822 - val_accuracy: 0.9798 - val_loss: 0.0770 - learning_rate: 0.0010
+Epoch 18/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 39s 227ms/step - accuracy: 1.0000 - loss: 0.0422
+Epoch 18: val_accuracy improved from 0.97982 to 0.98083, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 12ms/step - accuracy: 1.0000 - loss: 0.0422 - val_accuracy: 0.9808 - val_loss: 0.0780 - learning_rate: 0.0010
+Epoch 19/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 233ms/step - accuracy: 0.9517 - loss: 0.1611
+Epoch 19: val_accuracy improved from 0.98083 to 0.98184, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 43s 245ms/step - accuracy: 0.9543 - loss: 0.1576 - val_accuracy: 0.9818 - val_loss: 0.0696 - learning_rate: 0.0010
+Epoch 20/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 39s 228ms/step - accuracy: 0.9375 - loss: 0.1713
+Epoch 20: val_accuracy did not improve from 0.98184
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 11ms/step - accuracy: 0.9375 - loss: 0.1713 - val_accuracy: 0.9818 - val_loss: 0.0694 - learning_rate: 0.0010
+Epoch 21/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 235ms/step - accuracy: 0.9502 - loss: 0.1614
+Epoch 21: val_accuracy did not improve from 0.98184
+175/175 ━━━━━━━━━━━━━━━━━━━━ 43s 247ms/step - accuracy: 0.9454 - loss: 0.1722 - val_accuracy: 0.9768 - val_loss: 0.0708 - learning_rate: 0.0010
+Epoch 22/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 41s 236ms/step - accuracy: 0.9688 - loss: 0.0680
+Epoch 22: val_accuracy did not improve from 0.98184
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 12ms/step - accuracy: 0.9688 - loss: 0.0680 - val_accuracy: 0.9778 - val_loss: 0.0706 - learning_rate: 0.0010
+Epoch 23/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 236ms/step - accuracy: 0.9523 - loss: 0.1469
+Epoch 23: val_accuracy did not improve from 0.98184
+175/175 ━━━━━━━━━━━━━━━━━━━━ 44s 251ms/step - accuracy: 0.9513 - loss: 0.1580 - val_accuracy: 0.9818 - val_loss: 0.0720 - learning_rate: 0.0010
+Epoch 24/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 41s 238ms/step - accuracy: 0.9375 - loss: 0.2305
+Epoch 24: val_accuracy did not improve from 0.98184
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 13ms/step - accuracy: 0.9375 - loss: 0.2305 - val_accuracy: 0.9818 - val_loss: 0.0730 - learning_rate: 0.0010
+Epoch 25/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 235ms/step - accuracy: 0.9500 - loss: 0.1513
+Epoch 25: val_accuracy did not improve from 0.98184
+
+Epoch 25: ReduceLROnPlateau reducing learning rate to 0.0005000000237487257.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 43s 246ms/step - accuracy: 0.9524 - loss: 0.1510 - val_accuracy: 0.9758 - val_loss: 0.0826 - learning_rate: 0.0010
+Epoch 26/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 38s 223ms/step - accuracy: 0.9688 - loss: 0.0971
+Epoch 26: val_accuracy did not improve from 0.98184
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 12ms/step - accuracy: 0.9688 - loss: 0.0971 - val_accuracy: 0.9758 - val_loss: 0.0825 - learning_rate: 5.0000e-04
+Epoch 27/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 237ms/step - accuracy: 0.9608 - loss: 0.1321
+Epoch 27: val_accuracy did not improve from 0.98184
+175/175 ━━━━━━━━━━━━━━━━━━━━ 44s 249ms/step - accuracy: 0.9620 - loss: 0.1263 - val_accuracy: 0.9818 - val_loss: 0.0660 - learning_rate: 5.0000e-04
+Epoch 28/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 38s 224ms/step - accuracy: 0.9688 - loss: 0.0548
+Epoch 28: val_accuracy did not improve from 0.98184
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 12ms/step - accuracy: 0.9688 - loss: 0.0548 - val_accuracy: 0.9818 - val_loss: 0.0660 - learning_rate: 5.0000e-04
+Epoch 29/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 234ms/step - accuracy: 0.9667 - loss: 0.1205
+Epoch 29: val_accuracy improved from 0.98184 to 0.98285, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 43s 246ms/step - accuracy: 0.9647 - loss: 0.1212 - val_accuracy: 0.9828 - val_loss: 0.0691 - learning_rate: 5.0000e-04
+Epoch 30/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 39s 224ms/step - accuracy: 1.0000 - loss: 0.0173
+Epoch 30: val_accuracy did not improve from 0.98285
+175/175 ━━━━━━━━━━━━━━━━━━━━ 2s 12ms/step - accuracy: 1.0000 - loss: 0.0173 - val_accuracy: 0.9828 - val_loss: 0.0692 - learning_rate: 5.0000e-04
+Epoch 31/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 337ms/step - accuracy: 0.9617 - loss: 0.1165
+Epoch 31: val_accuracy did not improve from 0.98285
+175/175 ━━━━━━━━━━━━━━━━━━━━ 64s 366ms/step - accuracy: 0.9642 - loss: 0.1157 - val_accuracy: 0.9808 - val_loss: 0.0699 - learning_rate: 5.0000e-04
+Epoch 32/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 1:26 498ms/step - accuracy: 1.0000 - loss: 0.0185
+Epoch 32: val_accuracy did not improve from 0.98285
+
+Epoch 32: ReduceLROnPlateau reducing learning rate to 0.0002500000118743628.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 5s 28ms/step - accuracy: 1.0000 - loss: 0.0185 - val_accuracy: 0.9808 - val_loss: 0.0697 - learning_rate: 5.0000e-04
+Epoch 33/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 331ms/step - accuracy: 0.9620 - loss: 0.1279
+Epoch 33: val_accuracy did not improve from 0.98285
+175/175 ━━━━━━━━━━━━━━━━━━━━ 60s 345ms/step - accuracy: 0.9656 - loss: 0.1131 - val_accuracy: 0.9808 - val_loss: 0.0700 - learning_rate: 2.5000e-04
+Epoch 34/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 41s 237ms/step - accuracy: 0.9375 - loss: 0.2499
+Epoch 34: val_accuracy did not improve from 0.98285
+175/175 ━━━━━━━━━━━━━━━━━━━━ 3s 14ms/step - accuracy: 0.9375 - loss: 0.2499 - val_accuracy: 0.9808 - val_loss: 0.0699 - learning_rate: 2.5000e-04
+Epoch 35/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 244ms/step - accuracy: 0.9621 - loss: 0.1145
+Epoch 35: val_accuracy improved from 0.98285 to 0.98385, saving model to saved_models/urdu_digit_cnn_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 46s 260ms/step - accuracy: 0.9647 - loss: 0.1080 - val_accuracy: 0.9839 - val_loss: 0.0708 - learning_rate: 2.5000e-04
+Epoch 36/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 42s 246ms/step - accuracy: 0.9688 - loss: 0.1016
+Epoch 36: val_accuracy did not improve from 0.98385
+175/175 ━━━━━━━━━━━━━━━━━━━━ 3s 15ms/step - accuracy: 0.9688 - loss: 0.1016 - val_accuracy: 0.9839 - val_loss: 0.0711 - learning_rate: 2.5000e-04
+Epoch 37/100
+175/175 ━━━━━━━━━━━━━━━━━━━━ 0s 245ms/step - accuracy: 0.9639 - loss: 0.1047
+Epoch 37: val_accuracy did not improve from 0.98385
+
+Epoch 37: ReduceLROnPlateau reducing learning rate to 0.0001250000059371814.
+175/175 ━━━━━━━━━━━━━━━━━━━━ 46s 261ms/step - accuracy: 0.9627 - loss: 0.1092 - val_accuracy: 0.9839 - val_loss: 0.0677 - learning_rate: 2.5000e-04
+Epoch 38/100
+  1/175 ━━━━━━━━━━━━━━━━━━━━ 44s 255ms/step - accuracy: 0.9375 - loss: 0.0914
+Epoch 38: val_accuracy did not improve from 0.98385
+175/175 ━━━━━━━━━━━━━━━━━━━━ 3s 13ms/step - accuracy: 0.9375 - loss: 0.0914 - val_accuracy: 0.9839 - val_loss: 0.0677 - learning_rate: 1.2500e-04
+Epoch 38: early stopping
+Restoring model weights from the end of the best epoch: 28.
+[2025-12-05 17:44:09] [INFO] [train.py:240] - ----------------------------------------
+INFO:ml_digit_train:----------------------------------------
+[2025-12-05 17:44:09] [INFO] [train.py:241] - Training completed!
+INFO:ml_digit_train:Training completed!
+[2025-12-05 17:44:09] [INFO] [train.py:244] - Evaluating model on test set...
+INFO:ml_digit_train:Evaluating model on test set...
+[2025-12-05 17:44:11] [INFO] [train.py:246] - Test Loss: 0.0698
+INFO:ml_digit_train:Test Loss: 0.0698
+[2025-12-05 17:44:11] [INFO] [train.py:247] - Test Accuracy: 0.9802
+INFO:ml_digit_train:Test Accuracy: 0.9802
+[2025-12-05 17:44:11] [INFO] [train.py:302] - Saving training history to: saved_models\digit_training_history.json
+INFO:ml_digit_train:Saving training history to: saved_models\digit_training_history.json
+[2025-12-05 17:44:11] [INFO] [train.py:309] - Training history saved
+INFO:ml_digit_train:Training history saved
+[2025-12-05 17:44:11] [INFO] [train.py:255] - ============================================================
+INFO:ml_digit_train:============================================================
+[2025-12-05 17:44:11] [INFO] [train.py:256] - TRAINING SUMMARY
+INFO:ml_digit_train:TRAINING SUMMARY
+[2025-12-05 17:44:11] [INFO] [train.py:257] - ============================================================
+INFO:ml_digit_train:============================================================
+[2025-12-05 17:44:11] [INFO] [train.py:258] - Total training time: 16.63 minutes
+INFO:ml_digit_train:Total training time: 16.63 minutes
+[2025-12-05 17:44:11] [INFO] [train.py:259] - Final training accuracy: 0.9375
+INFO:ml_digit_train:Final training accuracy: 0.9375
+[2025-12-05 17:44:11] [INFO] [train.py:260] - Final validation accuracy: 0.9839
+INFO:ml_digit_train:Final validation accuracy: 0.9839
+[2025-12-05 17:44:11] [INFO] [train.py:261] - Test accuracy: 0.9802
+INFO:ml_digit_train:Test accuracy: 0.9802
+[2025-12-05 17:44:11] [INFO] [train.py:262] - Model saved to: saved_models/urdu_digit_cnn_model.h5
+INFO:ml_digit_train:Model saved to: saved_models/urdu_digit_cnn_model.h5
+[2025-12-05 17:44:11] [INFO] [train.py:263] - Class labels saved to: saved_models/digit_class_labels.json
+INFO:ml_digit_train:Class labels saved to: saved_models/digit_class_labels.json
+[2025-12-05 17:44:11] [INFO] [train.py:264] - ============================================================
+INFO:ml_digit_train:============================================================
+
+(venv312) X:\file\FAST_API\Urdu-OCR-CNN\backend>
