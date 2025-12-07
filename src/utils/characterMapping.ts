@@ -61,9 +61,9 @@ export const digitToUrdu: { [key: string]: string } = {
 };
 
 /**
- * Check if a prediction is a digit (0-9)
+ * Check if a prediction is a single digit character (0-9)
  * @param prediction - The predicted character name
- * @returns True if the prediction is a digit
+ * @returns True if the prediction is exactly one digit character (not multi-digit numbers)
  */
 export const isDigitPrediction = (prediction: string): boolean => {
   return /^[0-9]$/.test(prediction);
