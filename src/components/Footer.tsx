@@ -29,18 +29,8 @@ const Footer: React.FC<FooterProps> = ({ year = new Date().getFullYear() }) => {
             <h3>Quick Links</h3>
             <ul className="footer-links">
               <li>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/H0NEYP0T-466/URDU-OCR-CNN" target="_blank" rel="noopener noreferrer">
                   GitHub Repository
-                </a>
-              </li>
-              <li>
-                <a href="/docs">
-                  API Documentation
-                </a>
-              </li>
-              <li>
-                <a href="/about">
-                  About the Project
                 </a>
               </li>
             </ul>

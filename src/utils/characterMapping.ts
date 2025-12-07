@@ -33,9 +33,9 @@ export const characterToUrdu: { [key: string]: string } = {
   'raa': 'ر',
   'rhraa': 'ڑ',
   'seen': 'س',
-  'seey': 'ص',
+  'seey': 'ث',
   'sheen': 'ش',
-  'swaad': 'ض',
+  'swaad': 'ص',
   'taa': 'ت',
   'ttaa': 'ٹ',
   'twa': 'ط',
@@ -44,7 +44,7 @@ export const characterToUrdu: { [key: string]: string } = {
   'zaal': 'ذ',
   'zhaa': 'ژ',
   'zwaa': 'ظ',
-  'zwaad': 'ث',
+  'zwaad': 'ض',
 };
 
 export const digitToUrdu: { [key: string]: string } = {
