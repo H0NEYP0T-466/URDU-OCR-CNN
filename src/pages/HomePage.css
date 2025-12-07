@@ -62,9 +62,9 @@
 }
 
 .home-model-button.active {
-  background-color: #3b82f6;
+  background-color: #FFC107;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  color: white;
+  color: #111;
   font-weight: 500;
 }
 
@@ -99,7 +99,7 @@
 .home-mode-button.active {
   background-color: #262626;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  color: #3b82f6;
+  color: #FFC107;
   font-weight: 500;
 }
 
@@ -175,8 +175,8 @@
 }
 
 .home-feature-icon.blue {
-  background-color: rgba(59, 130, 246, 0.15);
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  background-color: rgba(255, 193, 7, 0.15);
+  border: 1px solid rgba(255, 193, 7, 0.3);
 }
 
 .home-feature-icon.green {
@@ -195,7 +195,7 @@
 }
 
 .home-feature-icon.blue svg {
-  color: #60a5fa;
+  color: #FFC107;
 }
 
 .home-feature-icon.green svg {
@@ -259,14 +259,14 @@
 }
 
 .home-character-card:hover {
-  border-color: #3b82f6;
+  border-color: #FFC107;
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(255, 193, 7, 0.3);
 }
 
 .home-character-urdu {
   font-size: 2rem;
-  color: #60a5fa;
+  color: #FFC107;
   font-weight: 600;
 }
 

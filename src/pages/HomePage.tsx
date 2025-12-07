@@ -165,7 +165,7 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Supported Characters Section */}
-      <div className="home-characters-section">
+      <div id="supported-characters" className="home-characters-section">
         <h2 className="home-section-title">Supported Characters</h2>
         
         {/* Urdu Alphabets */}
