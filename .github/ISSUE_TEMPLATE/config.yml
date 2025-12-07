@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/H0NEYP0T-466/URDU-OCR-CNN/discussions
+    about: Ask questions, share ideas, and engage with the community
+  - name: 🛡️ Security Vulnerability
+    url: https://github.com/H0NEYP0T-466/URDU-OCR-CNN/security/advisories/new
+    about: Report a security vulnerability (DO NOT create a public issue)
+  - name: 📖 Documentation
+    url: https://github.com/H0NEYP0T-466/URDU-OCR-CNN/tree/main/docs
+    about: Read the documentation for setup, API, and model information
+  - name: ❓ Q&A and Support
+    url: https://github.com/H0NEYP0T-466/URDU-OCR-CNN/discussions/categories/q-a
+    about: Get help with installation, usage, or general questions
