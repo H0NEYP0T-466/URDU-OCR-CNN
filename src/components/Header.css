@@ -15,7 +15,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -35,12 +36,12 @@
 .header-logo-icon {
   width: 2.5rem;
   height: 2.5rem;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #FFC107, #FFB300);
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 2px 4px rgba(255, 193, 7, 0.3);
 }
 
 .header-logo-icon span {
@@ -53,7 +54,7 @@
   font-size: 1.25rem;
   font-weight: bold;
   margin: 0;
-  background: linear-gradient(to right, #60a5fa, #3b82f6);
+  background: linear-gradient(to right, #FFC107, #FFB300);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -63,4 +64,27 @@
   font-size: 0.75rem;
   color: #9ca3af;
   margin: 0;
+}
+
+.header-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.header-nav-link {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+}
+
+.header-nav-link:hover {
+  color: #FFC107;
+  background-color: rgba(255, 193, 7, 0.1);
 }

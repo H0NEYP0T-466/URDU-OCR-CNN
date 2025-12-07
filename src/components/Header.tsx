@@ -12,6 +12,13 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ title = 'Urdu OCR' }) => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <header className="header">
       <div className="header-container">
@@ -26,6 +33,22 @@ const Header: React.FC<HeaderProps> = ({ title = 'Urdu OCR' }) => {
               <p className="header-subtitle">Handwritten Character Recognition</p>
             </div>
           </Link>
+
+          {/* Navigation Links */}
+          <nav className="header-nav">
+            <button 
+              onClick={() => scrollToSection('supported-characters')}
+              className="header-nav-link"
+            >
+              Supported Characters
+            </button>
+            <button 
+              onClick={() => scrollToSection('footer')}
+              className="header-nav-link"
+            >
+              About
+            </button>
+          </nav>
         </div>
       </div>
     </header>
