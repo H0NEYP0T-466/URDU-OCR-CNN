@@ -6,6 +6,7 @@
 
 import type { PredictionResultProps } from '../types';
 import LoadingSpinner from './LoadingSpinner';
+import { getFormattedCharacter } from '../utils/characterMapping';
 import './PredictionResult.css';
 
 const PredictionResult: React.FC<PredictionResultProps> = ({
@@ -73,6 +74,9 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
   }
 
   const confidencePercent = Math.round(result.confidence * 100);
+  // Check if the prediction is a digit (single character 0-9)
+  const isDigit = /^[0-9]$/.test(result.prediction);
+  const formattedPrediction = getFormattedCharacter(result.prediction, isDigit);
 
   return (
     <div className="prediction-result">
@@ -80,7 +84,7 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
       <div className="prediction-result-main">
         <p className="prediction-result-label">Predicted Character</p>
         <div className="prediction-result-character urdu-text">
-          {result.prediction}
+          {formattedPrediction}
         </div>
         
         {/* Confidence Bar */}
@@ -109,28 +113,32 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
       <div className="prediction-result-top5">
         <h4 className="prediction-result-top5-title">Top 5 Predictions</h4>
         <div className="prediction-result-top5-list">
-          {result.top_5.map((pred, index) => (
-            <div
-              key={index}
-              className="prediction-result-top5-item"
-            >
-              <div className="prediction-result-top5-item-left">
-                <span className="prediction-result-top5-item-rank">{index + 1}.</span>
-                <span className="prediction-result-top5-item-character urdu-text">{pred.character}</span>
-              </div>
-              <div className="prediction-result-top5-item-right">
-                <div className="prediction-result-top5-item-bar">
-                  <div
-                    className="prediction-result-top5-item-bar-fill"
-                    style={{ width: `${pred.probability * 100}%` }}
-                  />
+          {result.top_5.map((pred, index) => {
+            const predIsDigit = /^[0-9]$/.test(pred.character);
+            const formattedChar = getFormattedCharacter(pred.character, predIsDigit);
+            return (
+              <div
+                key={index}
+                className="prediction-result-top5-item"
+              >
+                <div className="prediction-result-top5-item-left">
+                  <span className="prediction-result-top5-item-rank">{index + 1}.</span>
+                  <span className="prediction-result-top5-item-character urdu-text">{formattedChar}</span>
                 </div>
-                <span className="prediction-result-top5-item-percent">
-                  {(pred.probability * 100).toFixed(1)}%
-                </span>
+                <div className="prediction-result-top5-item-right">
+                  <div className="prediction-result-top5-item-bar">
+                    <div
+                      className="prediction-result-top5-item-bar-fill"
+                      style={{ width: `${pred.probability * 100}%` }}
+                    />
+                  </div>
+                  <span className="prediction-result-top5-item-percent">
+                    {(pred.probability * 100).toFixed(1)}%
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

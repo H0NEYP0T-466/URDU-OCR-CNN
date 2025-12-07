@@ -10,6 +10,8 @@ html,
 body {
   height: 100%;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #111;
+  color: #e5e7eb;
 }
 
 #root {
@@ -24,16 +26,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f3f4f6;
+  background-color: #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #9ca3af;
+  background-color: #404040;
   border-radius: 0.25rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #4b5563;
+  background-color: #525252;
 }
 
 /* Urdu text styling */
@@ -45,53 +47,56 @@ body {
 
 /* Drag and drop zone */
 .dropzone {
-  border: 2px dashed #d1d5db;
+  border: 2px dashed #404040;
   border-radius: 0.5rem;
   padding: 2rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s;
+  background-color: #1a1a1a;
 }
 
 .dropzone:hover,
 .dropzone.active {
-  border-color: #3b82f6;
-  background-color: #eff6ff;
+  border-color: #60a5fa;
+  background-color: #1e293b;
 }
 
 /* Canvas styling */
 .drawing-canvas {
-  border: 2px solid #d1d5db;
+  border: 2px solid #404040;
   border-radius: 0.5rem;
   cursor: crosshair;
   touch-action: none;
-  background-color: white;
+  background-color: #1a1a1a;
 }
 
 /* Prediction result card */
 .prediction-card {
-  background-color: white;
+  background-color: #1a1a1a;
   border-radius: 0.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
   padding: 1.5rem;
   transition: all 0.3s;
+  border: 1px solid #262626;
 }
 
 .prediction-card:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+  border-color: #404040;
 }
 
 /* Progress bar */
 .progress-bar {
   height: 0.5rem;
-  background-color: #e5e7eb;
+  background-color: #262626;
   border-radius: 9999px;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(to right, #3b82f6, #10b981);
+  background: linear-gradient(to right, #60a5fa, #34d399);
   transition: all 0.5s;
 }
 
@@ -99,8 +104,8 @@ body {
 .spinner {
   animation: spin 1s linear infinite;
   border-radius: 9999px;
-  border: 4px solid #e5e7eb;
-  border-top-color: #3b82f6;
+  border: 4px solid #262626;
+  border-top-color: #60a5fa;
 }
 
 @keyframes spin {
@@ -111,7 +116,7 @@ body {
 
 /* Button styles */
 .btn-primary {
-  background-color: #2563eb;
+  background-color: #3b82f6;
   color: white;
   padding: 0.625rem 1.5rem;
   border-radius: 0.5rem;
@@ -122,7 +127,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #1d4ed8;
+  background-color: #2563eb;
 }
 
 .btn-primary:focus {
@@ -140,23 +145,24 @@ body {
 }
 
 .btn-secondary {
-  background-color: #e5e7eb;
-  color: #1f2937;
+  background-color: #262626;
+  color: #e5e7eb;
   padding: 0.625rem 1.5rem;
   border-radius: 0.5rem;
   font-weight: 500;
   transition: all 0.2s;
-  border: none;
+  border: 1px solid #404040;
   cursor: pointer;
 }
 
 .btn-secondary:hover {
-  background-color: #d1d5db;
+  background-color: #404040;
+  border-color: #525252;
 }
 
 .btn-secondary:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.5);
+  box-shadow: 0 0 0 3px rgba(64, 64, 64, 0.5);
 }
 
 .btn-secondary:active {
@@ -169,8 +175,8 @@ body {
 }
 
 .btn-outline {
-  border: 2px solid #2563eb;
-  color: #2563eb;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
   background-color: transparent;
   padding: 0.625rem 1.5rem;
   border-radius: 0.5rem;
@@ -180,7 +186,7 @@ body {
 }
 
 .btn-outline:hover {
-  background-color: #2563eb;
+  background-color: #3b82f6;
   color: white;
 }
 
@@ -195,11 +201,11 @@ body {
 
 /* Card styles */
 .card {
-  background-color: white;
+  background-color: #1a1a1a;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
   padding: 1.5rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #262626;
 }
 
 .card-hover {
@@ -208,22 +214,25 @@ body {
 
 .card-hover:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+  border-color: #404040;
 }
 
 /* Input styles */
 .input-field {
   width: 100%;
   padding: 0.625rem 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #404040;
   border-radius: 0.5rem;
   transition: all 0.2s;
+  background-color: #1a1a1a;
+  color: #e5e7eb;
 }
 
 .input-field:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-  border-color: transparent;
+  border-color: #3b82f6;
 }
 
 /* Badge styles */
@@ -237,23 +246,27 @@ body {
 }
 
 .badge-success {
-  background-color: #d1fae5;
-  color: #065f46;
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .badge-warning {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
 }
 
 .badge-error {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .badge-info {
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 /* Text shadows */
@@ -267,15 +280,15 @@ body {
 
 /* Gradients */
 .gradient-primary {
-  background: linear-gradient(to right, #2563eb, #1e40af);
+  background: linear-gradient(to right, #3b82f6, #2563eb);
 }
 
 .gradient-secondary {
-  background: linear-gradient(to right, #9333ea, #db2777);
+  background: linear-gradient(to right, #a855f7, #ec4899);
 }
 
 .gradient-success {
-  background: linear-gradient(to right, #10b981, #059669);
+  background: linear-gradient(to right, #34d399, #10b981);
 }
 
 /* Animations */
@@ -294,7 +307,7 @@ body {
 /* Skeleton loading */
 .skeleton {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  background-color: #e5e7eb;
+  background-color: #262626;
   border-radius: 0.25rem;
 }
 
@@ -309,9 +322,9 @@ body {
 
 /* Glass morphism */
 .glass {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(26, 26, 26, 0.7);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(64, 64, 64, 0.3);
 }
 
 /* Keyframe animations */

@@ -1,10 +1,10 @@
 /**
  * Header Component
  * 
- * Application header with navigation.
+ * Application header.
  */
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 interface HeaderProps {
@@ -12,14 +12,6 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ title = 'Urdu OCR' }) => {
-  const location = useLocation();
-  
-  const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/how-it-works', label: 'How It Works' },
-  ];
-
   return (
     <header className="header">
       <div className="header-container">
@@ -34,21 +26,6 @@ const Header: React.FC<HeaderProps> = ({ title = 'Urdu OCR' }) => {
               <p className="header-subtitle">Handwritten Character Recognition</p>
             </div>
           </Link>
-
-          {/* Navigation */}
-          <nav className="header-nav">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`header-nav-link ${
-                  location.pathname === link.path ? 'active' : ''
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
         </div>
       </div>
     </header>
