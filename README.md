@@ -76,7 +76,7 @@ This application uses deep learning to recognize handwritten Urdu alphabets and 
 - 📊 **Top-5 Predictions**: View confidence scores for top predictions
 - 🌐 **RESTful API**: Well-documented API endpoints
 - 📱 **Responsive Design**: Works on desktop and mobile
-- 🎨 **Modern UI**: Built with TailwindCSS
+- 🎨 **Modern UI**: Built with custom CSS styling
 
 ## 🔤 Supported Characters
 
