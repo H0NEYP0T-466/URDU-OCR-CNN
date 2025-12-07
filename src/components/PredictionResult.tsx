@@ -6,7 +6,7 @@
 
 import type { PredictionResultProps } from '../types';
 import LoadingSpinner from './LoadingSpinner';
-import { getFormattedCharacter } from '../utils/characterMapping';
+import { getFormattedCharacter, isDigitPrediction } from '../utils/characterMapping';
 import './PredictionResult.css';
 
 const PredictionResult: React.FC<PredictionResultProps> = ({
@@ -74,8 +74,7 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
   }
 
   const confidencePercent = Math.round(result.confidence * 100);
-  // Check if the prediction is a digit (single character 0-9)
-  const isDigit = /^[0-9]$/.test(result.prediction);
+  const isDigit = isDigitPrediction(result.prediction);
   const formattedPrediction = getFormattedCharacter(result.prediction, isDigit);
 
   return (
@@ -114,7 +113,7 @@ const PredictionResult: React.FC<PredictionResultProps> = ({
         <h4 className="prediction-result-top5-title">Top 5 Predictions</h4>
         <div className="prediction-result-top5-list">
           {result.top_5.map((pred, index) => {
-            const predIsDigit = /^[0-9]$/.test(pred.character);
+            const predIsDigit = isDigitPrediction(pred.character);
             const formattedChar = getFormattedCharacter(pred.character, predIsDigit);
             return (
               <div

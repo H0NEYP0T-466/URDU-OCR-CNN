@@ -61,6 +61,15 @@ export const digitToUrdu: { [key: string]: string } = {
 };
 
 /**
+ * Check if a prediction is a digit (0-9)
+ * @param prediction - The predicted character name
+ * @returns True if the prediction is a digit
+ */
+export const isDigitPrediction = (prediction: string): boolean => {
+  return /^[0-9]$/.test(prediction);
+};
+
+/**
  * Get the formatted character display (name + symbol)
  * @param prediction - The predicted character name or digit
  * @param isDigit - Whether this is a digit prediction
