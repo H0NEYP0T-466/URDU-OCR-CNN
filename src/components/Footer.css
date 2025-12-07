@@ -1,7 +1,8 @@
 .footer {
-  background-color: #1f2937;
-  color: #d1d5db;
+  background-color: #0a0a0a;
+  color: #9ca3af;
   margin-top: auto;
+  border-top: 1px solid #262626;
 }
 
 .footer-container {
@@ -23,7 +24,7 @@
 }
 
 .footer-section h3 {
-  color: white;
+  color: #f9fafb;
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
@@ -44,13 +45,13 @@
 
 .footer-links a {
   font-size: 0.875rem;
-  color: #d1d5db;
+  color: #9ca3af;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-links a:hover {
-  color: white;
+  color: #60a5fa;
 }
 
 .footer-tech-badges {
@@ -61,13 +62,15 @@
 
 .footer-tech-badge {
   padding: 0.25rem 0.5rem;
-  background-color: #374151;
+  background-color: #1a1a1a;
+  border: 1px solid #262626;
   border-radius: 0.25rem;
   font-size: 0.75rem;
+  color: #9ca3af;
 }
 
 .footer-copyright {
-  border-top: 1px solid #374151;
+  border-top: 1px solid #262626;
   margin-top: 2rem;
   padding-top: 1.5rem;
   text-align: center;

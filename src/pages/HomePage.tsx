@@ -9,6 +9,7 @@ import ImageUploader from '../components/ImageUploader';
 import DrawingCanvas from '../components/DrawingCanvas';
 import PredictionResult from '../components/PredictionResult';
 import { usePrediction, ModelType } from '../hooks/usePrediction';
+import { getAllCharacters, getAllDigits } from '../utils/characterMapping';
 import './HomePage.css';
 
 type InputMode = 'upload' | 'draw';
@@ -156,10 +157,41 @@ const HomePage: React.FC = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
             </svg>
           </div>
-          <h3 className="home-feature-title">46+ Characters & 10 Digits</h3>
+          <h3 className="home-feature-title">{getAllCharacters().length} Characters & {getAllDigits().length} Digits</h3>
           <p className="home-feature-text">
             Supports all Urdu alphabets and digits for comprehensive recognition.
           </p>
+        </div>
+      </div>
+
+      {/* Supported Characters Section */}
+      <div className="home-characters-section">
+        <h2 className="home-section-title">Supported Characters</h2>
+        
+        {/* Urdu Alphabets */}
+        <div className="home-characters-subsection">
+          <h3 className="home-characters-subtitle">Urdu Alphabets ({getAllCharacters().length})</h3>
+          <div className="home-characters-grid">
+            {getAllCharacters().map((char, index) => (
+              <div key={index} className="home-character-card">
+                <span className="home-character-urdu urdu-text">{char.urdu}</span>
+                <span className="home-character-name">{char.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Urdu Digits */}
+        <div className="home-characters-subsection">
+          <h3 className="home-characters-subtitle">Urdu Digits ({getAllDigits().length})</h3>
+          <div className="home-characters-grid">
+            {getAllDigits().map((digit, index) => (
+              <div key={index} className="home-character-card">
+                <span className="home-character-urdu urdu-text">{digit.urdu}</span>
+                <span className="home-character-name">{digit.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

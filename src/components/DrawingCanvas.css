@@ -7,11 +7,11 @@
 }
 
 .drawing-canvas {
-  border: 2px solid #d1d5db;
+  border: 2px solid #404040;
   border-radius: 0.5rem;
   cursor: crosshair;
   touch-action: none;
-  background-color: white;
+  background-color: #0a0a0a;
   width: 100%;
   max-width: 28rem;
   margin: 0 auto;
@@ -33,7 +33,7 @@
 }
 
 .drawing-canvas-overlay p {
-  color: #9ca3af;
+  color: #6b7280;
   font-size: 1.125rem;
 }
 
@@ -47,7 +47,7 @@
 
 .drawing-canvas-controls label {
   font-size: 0.875rem;
-  color: #4b5563;
+  color: #9ca3af;
 }
 
 .drawing-canvas-controls input[type="range"] {
@@ -56,7 +56,7 @@
 
 .drawing-canvas-controls span {
   font-size: 0.875rem;
-  color: #4b5563;
+  color: #9ca3af;
   width: 2rem;
 }
 

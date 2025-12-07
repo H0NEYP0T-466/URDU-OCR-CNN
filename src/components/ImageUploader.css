@@ -3,18 +3,19 @@
 }
 
 .image-uploader-dropzone {
-  border: 2px dashed #d1d5db;
+  border: 2px dashed #404040;
   border-radius: 0.5rem;
   padding: 2rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s;
+  background-color: #0a0a0a;
 }
 
 .image-uploader-dropzone:hover,
 .image-uploader-dropzone.active {
-  border-color: #3b82f6;
-  background-color: #eff6ff;
+  border-color: #60a5fa;
+  background-color: #1a1a1a;
 }
 
 .image-uploader-dropzone.disabled {
@@ -33,17 +34,18 @@
   max-width: 100%;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  border: 1px solid #262626;
 }
 
 .image-uploader-filename {
   font-size: 0.875rem;
-  color: #4b5563;
+  color: #e5e7eb;
 }
 
 .image-uploader-filesize {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #9ca3af;
 }
 
 .image-uploader-placeholder {
@@ -55,37 +57,37 @@
 .image-uploader-icon {
   width: 4rem;
   height: 4rem;
-  color: #9ca3af;
+  color: #6b7280;
   margin-bottom: 1rem;
 }
 
 .image-uploader-text {
   font-size: 1.125rem;
-  color: #4b5563;
+  color: #e5e7eb;
   margin-bottom: 0.5rem;
 }
 
 .image-uploader-subtext {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #9ca3af;
 }
 
 .image-uploader-formats {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: #6b7280;
   margin-top: 0.5rem;
 }
 
 .image-uploader-error {
   margin-top: 0.75rem;
   padding: 0.75rem;
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
   border-radius: 0.5rem;
 }
 
 .image-uploader-error p {
-  color: #dc2626;
+  color: #f87171;
   font-size: 0.875rem;
   margin: 0;
 }
