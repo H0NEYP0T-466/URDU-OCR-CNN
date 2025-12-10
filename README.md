@@ -1,16 +1,67 @@
-# Urdu Character Recognition
+# URDU-OCR-CNN
+
+<p align="center">
+
+  <!-- Core -->
+  ![GitHub License](https://img.shields.io/github/license/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=brightgreen)
+  ![GitHub Stars](https://img.shields.io/github/stars/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=yellow)
+  ![GitHub Forks](https://img.shields.io/github/forks/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=blue)
+  ![GitHub Issues](https://img.shields.io/github/issues/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=red)
+  ![GitHub Pull Requests](https://img.shields.io/github/issues-pr/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=orange)
+  ![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)
+
+  <!-- Activity -->
+  ![Last Commit](https://img.shields.io/github/last-commit/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=purple)
+  ![Commit Activity](https://img.shields.io/github/commit-activity/m/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=teal)
+  ![Repo Size](https://img.shields.io/github/repo-size/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=blueviolet)
+  ![Code Size](https://img.shields.io/github/languages/code-size/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=indigo)
+
+  <!-- Languages -->
+  ![Top Language](https://img.shields.io/github/languages/top/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=critical)
+  ![Languages Count](https://img.shields.io/github/languages/count/H0NEYP0T-466/URDU-OCR-CNN?style=for-the-badge&color=success)
+
+  <!-- Community -->
+  ![Documentation](https://img.shields.io/badge/Docs-Available-green?style=for-the-badge&logo=readthedocs&logoColor=white)
+  ![Open Source Love](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red?style=for-the-badge)
+
+</p>
 
 <div align="center">
-
-![Urdu OCR](https://img.shields.io/badge/Urdu-OCR-blue?style=for-the-badge)
-![Python](https://img.shields.io/badge/Python-3.10+-green?style=for-the-badge&logo=python)
-![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15-FF6F00?style=for-the-badge&logo=tensorflow)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688?style=for-the-badge&logo=fastapi)
 
 A full-stack web application for recognizing handwritten Urdu characters using Convolutional Neural Networks (CNN).
 
 </div>
+
+## 🔗 Quick Links
+
+- [📖 Documentation](docs/)
+- [🐛 Report Bug](https://github.com/H0NEYP0T-466/URDU-OCR-CNN/issues/new?template=bug_report.yml)
+- [💡 Request Feature](https://github.com/H0NEYP0T-466/URDU-OCR-CNN/issues/new?template=feature_request.yml)
+- [🤝 Contributing Guide](CONTRIBUTING.md)
+
+---
+
+## 📑 Table of Contents
+
+- [📝 Description](#-description)
+- [✨ Features](#-features)
+- [🔤 Supported Characters](#-supported-characters)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [📦 Dependencies & Packages](#-dependencies--packages)
+- [📁 Project Structure](#-project-structure)
+- [🚀 Getting Started](#-getting-started)
+- [📊 Training the Model](#-training-the-model)
+- [📚 Datasets](#-datasets)
+- [🔌 API Endpoints](#-api-endpoints)
+- [🧪 Testing](#-testing)
+- [📖 Documentation](#-documentation)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [🛡 Security](#-security)
+- [📏 Code of Conduct](#-code-of-conduct)
+- [🙏 Acknowledgments](#-acknowledgments)
+
+---
 
 ## 📝 Description
 
@@ -25,7 +76,7 @@ This application uses deep learning to recognize handwritten Urdu alphabets and 
 - 📊 **Top-5 Predictions**: View confidence scores for top predictions
 - 🌐 **RESTful API**: Well-documented API endpoints
 - 📱 **Responsive Design**: Works on desktop and mobile
-- 🎨 **Modern UI**: Built with TailwindCSS
+- 🎨 **Modern UI**: Built with custom CSS styling
 
 ## 🔤 Supported Characters
 
@@ -41,20 +92,92 @@ This application uses deep learning to recognize handwritten Urdu alphabets and 
 
 ## 🛠️ Tech Stack
 
-### Backend
-- **Framework**: FastAPI
-- **ML/DL**: TensorFlow/Keras
-- **Image Processing**: OpenCV, Pillow
-- **Server**: Uvicorn
-- **Testing**: Pytest
+### Languages
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-### Frontend
-- **Framework**: React 18
-- **Language**: TypeScript
-- **Build Tool**: Vite
-- **Styling**: TailwindCSS
-- **HTTP Client**: Axios
-- **Testing**: Vitest
+### Frameworks & Libraries
+
+**Backend:**
+
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![Keras](https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=keras&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+![scikit--learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+
+**Frontend:**
+
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+
+### DevOps / CI / Tools
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+
+### Testing
+![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
+
+---
+
+## 📦 Dependencies & Packages
+
+<details>
+<summary><b>Backend Runtime Dependencies</b></summary>
+
+### Web Framework & Server
+[![fastapi](https://img.shields.io/pypi/v/fastapi?style=for-the-badge&label=fastapi&color=009688)](https://pypi.org/project/fastapi/)
+[![uvicorn](https://img.shields.io/pypi/v/uvicorn?style=for-the-badge&label=uvicorn&color=2196F3)](https://pypi.org/project/uvicorn/)
+[![python-multipart](https://img.shields.io/pypi/v/python-multipart?style=for-the-badge&label=python-multipart&color=4CAF50)](https://pypi.org/project/python-multipart/)
+
+### Machine Learning & Data Science
+[![tensorflow](https://img.shields.io/pypi/v/tensorflow?style=for-the-badge&label=tensorflow&color=FF6F00)](https://pypi.org/project/tensorflow/)
+[![numpy](https://img.shields.io/pypi/v/numpy?style=for-the-badge&label=numpy&color=013243)](https://pypi.org/project/numpy/)
+[![scikit-learn](https://img.shields.io/pypi/v/scikit-learn?style=for-the-badge&label=scikit-learn&color=F7931E)](https://pypi.org/project/scikit-learn/)
+[![matplotlib](https://img.shields.io/pypi/v/matplotlib?style=for-the-badge&label=matplotlib&color=11557c)](https://pypi.org/project/matplotlib/)
+[![seaborn](https://img.shields.io/pypi/v/seaborn?style=for-the-badge&label=seaborn&color=76b7b2)](https://pypi.org/project/seaborn/)
+
+### Image Processing
+[![opencv-python](https://img.shields.io/pypi/v/opencv-python?style=for-the-badge&label=opencv-python&color=5C3EE8)](https://pypi.org/project/opencv-python/)
+[![pillow](https://img.shields.io/pypi/v/pillow?style=for-the-badge&label=pillow&color=FFD43B)](https://pypi.org/project/pillow/)
+
+### Configuration & Validation
+[![python-dotenv](https://img.shields.io/pypi/v/python-dotenv?style=for-the-badge&label=python-dotenv&color=ECD53F)](https://pypi.org/project/python-dotenv/)
+[![pydantic](https://img.shields.io/pypi/v/pydantic?style=for-the-badge&label=pydantic&color=E92063)](https://pypi.org/project/pydantic/)
+[![pydantic-settings](https://img.shields.io/pypi/v/pydantic-settings?style=for-the-badge&label=pydantic-settings&color=E92063)](https://pypi.org/project/pydantic-settings/)
+
+### Testing
+[![pytest](https://img.shields.io/pypi/v/pytest?style=for-the-badge&label=pytest&color=0A9EDC)](https://pypi.org/project/pytest/)
+[![httpx](https://img.shields.io/pypi/v/httpx?style=for-the-badge&label=httpx&color=0052CC)](https://pypi.org/project/httpx/)
+
+</details>
+
+<details>
+<summary><b>Frontend Dependencies</b></summary>
+
+### Runtime Dependencies
+[![axios](https://img.shields.io/npm/v/axios?style=for-the-badge&label=axios&color=5A29E4)](https://www.npmjs.com/package/axios)
+[![react](https://img.shields.io/npm/v/react?style=for-the-badge&label=react&color=61DAFB)](https://www.npmjs.com/package/react)
+[![react-dom](https://img.shields.io/npm/v/react-dom?style=for-the-badge&label=react-dom&color=61DAFB)](https://www.npmjs.com/package/react-dom)
+[![react-dropzone](https://img.shields.io/npm/v/react-dropzone?style=for-the-badge&label=react-dropzone&color=00B8D9)](https://www.npmjs.com/package/react-dropzone)
+[![react-icons](https://img.shields.io/npm/v/react-icons?style=for-the-badge&label=react-icons&color=E91E63)](https://www.npmjs.com/package/react-icons)
+[![react-router-dom](https://img.shields.io/npm/v/react-router-dom?style=for-the-badge&label=react-router-dom&color=CA4245)](https://www.npmjs.com/package/react-router-dom)
+
+### Dev Dependencies
+[![typescript](https://img.shields.io/npm/v/typescript?style=for-the-badge&label=typescript&color=3178C6)](https://www.npmjs.com/package/typescript)
+[![vite](https://img.shields.io/npm/v/vite?style=for-the-badge&label=vite&color=646CFF)](https://www.npmjs.com/package/vite)
+[![vitest](https://img.shields.io/npm/v/vitest?style=for-the-badge&label=vitest&color=6E9F18)](https://www.npmjs.com/package/vitest)
+[![eslint](https://img.shields.io/npm/v/eslint?style=for-the-badge&label=eslint&color=4B32C3)](https://www.npmjs.com/package/eslint)
+[![@vitejs/plugin-react](https://img.shields.io/npm/v/@vitejs/plugin-react?style=for-the-badge&label=@vitejs/plugin-react&color=61DAFB)](https://www.npmjs.com/package/@vitejs/plugin-react)
+[![@typescript-eslint/eslint-plugin](https://img.shields.io/npm/v/@typescript-eslint/eslint-plugin?style=for-the-badge&label=@typescript-eslint/eslint-plugin&color=3178C6)](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
+[![@typescript-eslint/parser](https://img.shields.io/npm/v/@typescript-eslint/parser?style=for-the-badge&label=@typescript-eslint/parser&color=3178C6)](https://www.npmjs.com/package/@typescript-eslint/parser)
+
+</details>
 
 ## 📁 Project Structure
 
@@ -406,15 +529,24 @@ npm run test
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+- How to fork and clone the repository
+- Code style and linting rules
+- Submitting bug reports and feature requests
+- Creating pull requests
+- Testing and documentation requirements
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🛡 Security
+
+Security is a priority for this project. If you discover a security vulnerability, please review our [Security Policy](SECURITY.md) for information on how to report it responsibly.
+
+## 📏 Code of Conduct
+
+We are committed to providing a welcoming and inclusive environment. Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to understand our community guidelines and expectations.
 
 ## 🙏 Acknowledgments
 
@@ -422,13 +554,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - FastAPI team for the excellent web framework
 - React team for the frontend library
 - All contributors to the Urdu handwritten character datasets
+- The open-source community for their invaluable tools and libraries
 
 ## 📧 Contact
 
-For questions or feedback, please open an issue on GitHub.
+For questions or feedback, please open an issue on GitHub or reach out through our [Discussions](https://github.com/H0NEYP0T-466/URDU-OCR-CNN/discussions).
 
 ---
 
-<div align="center">
-Built with ❤️ for the Urdu language
-</div>
+<p align="center">Made with ❤️ by H0NEYP0T-466</p>
