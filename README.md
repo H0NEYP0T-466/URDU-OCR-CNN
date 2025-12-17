@@ -474,16 +474,16 @@ python -m ml.evaluate
 
 ### Recommended Datasets
 
-1. **UNHD Dataset** (Urdu Nastaliq Handwritten Dataset)
-   - URL: https://github.com/Wikipedia-Urdu/UNHD-Dataset
-   - Contains: Urdu characters in Nastaliq script
+1. **Urdu Handwritten Dataset**
+   - URL: https://www.kaggle.com/datasets/surindersinghkhurana/handwritten-urdu-characters-dataset
+   - Contains: Urdu characters script
 
-2. **UCOM Offline Dataset**
-   - URL: https://drive.google.com/drive/folders/1K7rKt7e2oKnCQwP9g3UG5MQxkj_JjvZl
+2. **Urdu Nastalique Dataset**
+   - URL: https://www.kaggle.com/datasets/saqibraza21/printed-urdu-character-nastalique-font
    - Research paper: Search for "UCOM Urdu Character Dataset"
 
 3. **Urdu-Handwritten-Characters Dataset (Kaggle)**
-   - URL: https://www.kaggle.com/datasets/hazratali/urdu-handwritten-characters-dataset
+   - URL: https://www.kaggle.com/datasets/hazrat/uhat-urdu-handwritten-text-dataset
    - Contains: 38 classes of Urdu characters
 
 4. **CALAM Dataset**
